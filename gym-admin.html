@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PowerZone Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--bg:#0d0f14;--surface:#151820;--surface2:#1c2030;--border:#252a3a;--accent:#FF6B00;--accent2:#ff6b6b;--accent3:#00e5a0;--text:#e8eaf0;--text2:#8b90a8;--text3:#545870;--radius:12px;--sidebar:265px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;overflow-x:hidden;}
+#login-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;transition:opacity .4s;}
+#login-screen.hidden{opacity:0;pointer-events:none;}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:48px 40px;width:400px;text-align:center;}
+.login-logo{width:56px;height:56px;background:linear-gradient(135deg,var(--accent),#ff9a6c);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:26px;}
+.login-box h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:6px;}
+.login-box p{color:var(--text2);font-size:13px;margin-bottom:32px;}
+.input-group{text-align:left;margin-bottom:16px;}
+.input-group label{font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:6px;font-family:'DM Mono',monospace;}
+.input-group input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+.input-group input:focus{border-color:var(--accent);}
+.btn-login{width:100%;background:var(--accent);border:none;border-radius:8px;padding:13px;color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;margin-top:8px;}
+.login-hint{color:var(--text3);font-size:12px;margin-top:16px;}
+
+.sidebar{width:var(--sidebar);background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;overflow-y:auto;}
+.sidebar-header{padding:20px;border-bottom:1px solid var(--border);}
+.sidebar-logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#ff9a6c);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.sidebar-logo .brand{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;}
+.sidebar-logo small{display:block;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;}
+.sidebar-nav{flex:1;padding:12px 0;}
+.nav-section{padding:6px 20px;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;font-family:'DM Mono',monospace;margin-top:8px;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:10px 20px;cursor:pointer;transition:background .15s;color:var(--text2);font-size:14px;font-weight:500;position:relative;margin:1px 0;}
+.nav-item:hover{background:var(--surface2);color:var(--text);}
+.nav-item.active{background:rgba(255,107,0,0.12);color:var(--accent);}
+.nav-item.active::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:0 2px 2px 0;}
+.nav-item .icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;background:var(--surface2);flex-shrink:0;}
+.nav-item.active .icon{background:rgba(255,107,0,0.2);}
+.sidebar-footer{padding:14px 20px;border-top:1px solid var(--border);}
+.logout-btn{display:flex;align-items:center;gap:10px;color:var(--text2);font-size:13px;cursor:pointer;padding:8px 12px;border-radius:8px;transition:all .15s;}
+.logout-btn:hover{background:rgba(255,107,107,.1);color:var(--accent2);}
+
+.main{margin-left:var(--sidebar);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
+.page-title{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.live-badge{background:rgba(0,229,160,.12);color:var(--accent3);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;font-family:'DM Mono',monospace;display:flex;align-items:center;gap:6px;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.preview-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
+.preview-btn:hover{opacity:.85;}
+
+.content{padding:32px;flex:1;}
+.section-panel{display:none;}.section-panel.active{display:block;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:16px;margin-bottom:28px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.stat-card .lbl{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;font-family:'DM Mono',monospace;margin-bottom:8px;}
+.stat-card .val{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;}
+.stat-card .sub{font-size:12px;color:var(--text3);margin-top:4px;}
+.stat-card.orange .val{color:var(--accent);}.stat-card.green .val{color:var(--accent3);}.stat-card.yellow .val{color:#ffc046;}.stat-card.red .val{color:var(--accent2);}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.dot-green{background:var(--accent3);}.dot-red{background:var(--accent2);}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-grid.full{grid-template-columns:1fr;}
+.form-grid.tri{grid-template-columns:1fr 1fr 1fr;}
+.field{display:flex;flex-direction:column;gap:6px;}
+.field label{font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.7px;font-family:'DM Mono',monospace;}
+.field input,.field textarea,.field select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s;resize:vertical;width:100%;}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent);}
+.field textarea{min-height:100px;}
+
+.btn{border:none;border-radius:8px;padding:10px 20px;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:opacity .2s;display:inline-flex;align-items:center;gap:7px;}
+.btn:hover{opacity:.85;}
+.btn-primary{background:var(--accent);color:#fff;}.btn-success{background:var(--accent3);color:#000;}.btn-danger{background:var(--accent2);color:#fff;}.btn-ghost{background:var(--surface2);color:var(--text2);border:1px solid var(--border);}
+.btn-sm{padding:7px 14px;font-size:12px;}
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
+
+.sec-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:16px;}
+.sec-header h2{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;}
+.sec-header p{font-size:13px;color:var(--text3);margin-top:4px;}
+
+.color-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.color-row:last-child{border-bottom:none;}
+.color-row label{flex:1;font-size:13px;font-weight:500;}
+.color-row input[type=color]{width:42px;height:34px;border:none;border-radius:6px;background:transparent;cursor:pointer;padding:2px;}
+.color-hex{font-family:'DM Mono';font-size:12px;color:var(--text3);}
+
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);}
+.toggle-row:last-child{border-bottom:none;}
+.ti h4{font-size:14px;font-weight:500;margin-bottom:3px;}.ti p{font-size:12px;color:var(--text3);}
+.toggle{position:relative;width:42px;height:24px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.slider{position:absolute;inset:0;background:var(--surface2);border:1px solid var(--border);border-radius:24px;cursor:pointer;transition:.3s;}
+.slider::before{content:'';position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:var(--text3);border-radius:50%;transition:.3s;}
+.toggle input:checked+.slider{background:var(--accent);border-color:var(--accent);}
+.toggle input:checked+.slider::before{transform:translateX(18px);background:#fff;}
+
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+.modal-ov.show{opacity:1;pointer-events:all;}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;width:540px;max-width:95vw;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .2s;}
+.modal-ov.show .modal-box{transform:translateY(0);}
+.modal-title{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;margin-bottom:20px;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+
+.toast{position:fixed;bottom:24px;right:24px;background:var(--surface);border:1px solid var(--accent3);border-radius:10px;padding:12px 20px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:10px;z-index:999;transform:translateY(80px);opacity:0;transition:all .3s;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);flex-shrink:0;}
+
+.items-list{display:flex;flex-direction:column;gap:12px;}
+.item-row{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px;}
+.item-row-num{width:32px;height:32px;background:rgba(255,107,0,.15);color:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;flex-shrink:0;}
+.item-row-info{flex:1;min-width:0;}
+.item-row-title{font-weight:600;font-size:14px;margin-bottom:2px;}
+.item-row-sub{font-size:12px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.del-btn{background:rgba(255,107,107,.12);color:var(--accent2);border:none;border-radius:6px;padding:6px 11px;font-size:12px;cursor:pointer;}
+.del-btn:hover{background:rgba(255,107,107,.25);}
+.edit-btn{background:rgba(255,107,0,.12);color:var(--accent);border:none;border-radius:6px;padding:6px 11px;font-size:12px;cursor:pointer;}
+.edit-btn:hover{background:rgba(255,107,0,.25);}
+.add-card{background:var(--surface2);border:2px dashed var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:72px;cursor:pointer;color:var(--text3);transition:all .2s;font-size:13px;padding:16px;}
+.add-card:hover{border-color:var(--accent);color:var(--accent);}
+
+.eq-table{width:100%;border-collapse:collapse;font-size:13px;}
+.eq-table th{padding:10px 14px;text-align:left;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;font-family:'DM Mono',monospace;border-bottom:1px solid var(--border);}
+.eq-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top;}
+.eq-table tr:hover td{background:rgba(255,255,255,.02);}
+.s-new{background:rgba(0,229,160,.1);color:var(--accent3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;}
+.s-read{background:rgba(139,144,168,.1);color:var(--text3);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;}
+
+.preview-thumb{width:60px;height:42px;object-fit:cover;border-radius:6px;border:1px solid var(--border);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+.img-preview{width:100%;max-height:140px;object-fit:cover;border-radius:8px;margin-top:10px;display:none;border:1px solid var(--border);}
+.img-preview.show{display:block;}
+.upload-hint{font-size:11px;color:var(--text3);margin-top:4px;}
+.section-divider{height:1px;background:var(--border);margin:20px 0;}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">💪</div>
+    <h1>PowerZone Admin</h1>
+    <p>Gym Website Control Panel</p>
+    <div class="input-group"><label>Username</label><input type="text" id="lu" placeholder="admin"/></div>
+    <div class="input-group"><label>Password</label><input type="password" id="lp" placeholder="••••••••"/></div>
+    <button class="btn-login" onclick="doLogin()">Sign In →</button>
+    <p class="login-hint">Default: admin / admin123</p>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-icon">💪</div>
+      <div><div class="brand">PowerZone</div><small>Admin Panel</small></div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Dashboard</div>
+    <div class="nav-item active" data-panel="dashboard"><div class="icon">📊</div>Overview</div>
+    <div class="nav-section">🎨 Design</div>
+    <div class="nav-item" data-panel="appearance"><div class="icon">🎨</div>Colors & Theme</div>
+    <div class="nav-section">Content</div>
+    <div class="nav-item" data-panel="hero"><div class="icon">🏠</div>Hero / Home</div>
+    <div class="nav-item" data-panel="about"><div class="icon">ℹ️</div>About Section</div>
+    <div class="nav-item" data-panel="services"><div class="icon">💪</div>Services / Programs</div>
+    <div class="nav-item" data-panel="gallery"><div class="icon">🖼️</div>Gallery</div>
+    <div class="nav-item" data-panel="pricing"><div class="icon">💳</div>Pricing Plans</div>
+    <div class="nav-item" data-panel="team"><div class="icon">👥</div>Team / Trainers</div>
+    <div class="nav-item" data-panel="booking"><div class="icon">📅</div>Booking Section</div>
+    <div class="nav-item" data-panel="faq"><div class="icon">❓</div>FAQ</div>
+    <div class="nav-item" data-panel="contact"><div class="icon">📞</div>Contact Info</div>
+    <div class="nav-item" data-panel="custom-sections"><div class="icon">➕</div>Add Custom Sections</div>
+    <div class="nav-section">Visibility</div>
+    <div class="nav-item" data-panel="visibility"><div class="icon">👁️</div>Show / Hide Sections</div>
+    <div class="nav-section">Messages</div>
+    <div class="nav-item" data-panel="enquiries"><div class="icon">📬</div>Enquiries <span id="eq-badge" style="margin-left:auto;background:var(--accent2);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;display:none;"></span></div>
+    <div class="nav-section">Settings</div>
+    <div class="nav-item" data-panel="settings"><div class="icon">⚙️</div>Settings & SEO</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="logout-btn" onclick="doLogout()">🚪 Logout</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="page-title" id="page-title">Dashboard</div>
+    <div class="topbar-right">
+      <span class="live-badge"><span class="live-dot"></span>Live Site</span>
+      <a class="preview-btn" href="gym-india-pro.html" target="_blank" id="preview-link">👁 View Site</a>
+    </div>
+  </div>
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="section-panel active" id="panel-dashboard">
+      <div class="sec-header"><div><h2>Dashboard Overview</h2><p>Welcome to PowerZone Admin Panel</p></div></div>
+      <div class="stat-grid">
+        <div class="stat-card orange"><div class="lbl">Enquiries</div><div class="val" id="d-enq">0</div><div class="sub">Total messages</div></div>
+        <div class="stat-card green"><div class="lbl">New Messages</div><div class="val" id="d-new">0</div><div class="sub">Unread</div></div>
+        <div class="stat-card yellow"><div class="lbl">Services</div><div class="val" id="d-srv">6</div><div class="sub">Active programs</div></div>
+        <div class="stat-card orange"><div class="lbl">Gallery</div><div class="val" id="d-gal">6</div><div class="sub">Photos</div></div>
+        <div class="stat-card green"><div class="lbl">Team</div><div class="val" id="d-team">4</div><div class="sub">Trainers</div></div>
+        <div class="stat-card"><div class="lbl">Custom Sections</div><div class="val" id="d-cs">0</div><div class="sub">Added</div></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Quick Actions</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <button class="btn btn-primary" onclick="goPanel('hero')">✏️ Edit Hero</button>
+          <button class="btn btn-ghost" onclick="goPanel('appearance')">🎨 Change Colors</button>
+          <button class="btn btn-ghost" onclick="goPanel('services')">💪 Edit Services</button>
+          <button class="btn btn-ghost" onclick="goPanel('pricing')">💳 Edit Pricing</button>
+          <button class="btn btn-ghost" onclick="goPanel('gallery')">🖼️ Edit Gallery</button>
+          <button class="btn btn-ghost" onclick="goPanel('custom-sections')">➕ Add Section</button>
+          <button class="btn btn-success" onclick="goPanel('enquiries')">📬 View Messages</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot dot-green"></span>How to Use</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.8;">
+          <p>1. Edit content from the left sidebar panels</p>
+          <p>2. Every change auto-saves and applies to the website</p>
+          <p>3. Click <strong style="color:var(--accent)">View Site</strong> (top right) to see your live website</p>
+          <p>4. Use <strong>Colors & Theme</strong> to change primary color and backgrounds</p>
+          <p>5. Use <strong>Add Custom Sections</strong> to add new content blocks</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="section-panel" id="panel-appearance">
+      <div class="sec-header"><div><h2>Colors & Theme</h2><p>Customize your website's look and feel</p></div>
+        <button class="btn btn-primary" onclick="saveAppearance()">💾 Save & Apply</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Primary / Accent Color</div>
+        <div class="color-row">
+          <label><strong>Main Color</strong><br/><small style="color:var(--text3)">Used for buttons, highlights, icons</small></label>
+          <input type="color" id="f-primaryColor" value="#FF6B00" oninput="this.nextElementSibling.textContent=this.value"/>
+          <span class="color-hex">#FF6B00</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Background Colors</div>
+        <div class="color-row">
+          <label><strong>Dark Background</strong><br/><small style="color:var(--text3)">Main body, hero, about section</small></label>
+          <input type="color" id="f-bgDark" value="#09090B" oninput="this.nextElementSibling.textContent=this.value"/>
+          <span class="color-hex">#09090B</span>
+        </div>
+        <div class="color-row">
+          <label><strong>Alt Background</strong><br/><small style="color:var(--text3)">Services, gallery, pricing sections</small></label>
+          <input type="color" id="f-bgDark2" value="#111113" oninput="this.nextElementSibling.textContent=this.value"/>
+          <span class="color-hex">#111113</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Logo Settings</div>
+        <div class="form-grid tri" style="gap:16px;">
+          <div class="field"><label>Logo Text</label><input id="f-logoText" type="text" placeholder="PowerZone"/></div>
+          <div class="field"><label>Logo Icon (2 letters)</label><input id="f-logoIcon" type="text" placeholder="PZ" maxlength="3"/></div>
+          <div class="field"><label>Logo Subtitle</label><input id="f-logoSub" type="text" placeholder="Fitness Centre"/></div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="saveAppearance()">💾 Save Appearance</button>
+        <button class="btn btn-ghost" onclick="previewSite()">👁 Preview Changes</button>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="section-panel" id="panel-hero">
+      <div class="sec-header"><div><h2>Hero / Home Section</h2><p>Edit main banner content</p></div>
+        <button class="btn btn-primary" onclick="saveHero()">💾 Save</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Announcement Bar</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Announcement Text</label><input id="f-announceText" type="text" placeholder="MONSOON OFFER: Join this week..."/></div>
+          <div class="field"><label>Show Announcement</label>
+            <select id="f-showAnnounce"><option value="true">Yes — Show</option><option value="false">No — Hide</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Hero Content</div>
+        <div class="form-grid full" style="gap:16px;">
+          <div class="field"><label>Badge Text (top)</label><input id="f-heroBadge" type="text" placeholder="Voted Mumbai's Best Gym 2024..."/></div>
+          <div class="field"><label>Main Heading (HTML allowed)</label><textarea id="f-heroHeading" style="min-height:80px" placeholder="TRAIN&lt;br/&gt;&lt;span class=&quot;line2&quot;&gt;HARD.&lt;/span&gt;&lt;br/&gt;&lt;span class=&quot;line3&quot;&gt;WIN BIG.&lt;/span&gt;"></textarea></div>
+          <div class="field"><label>Hero Description</label><textarea id="f-heroDesc" placeholder="Mumbai's most result-driven fitness centre..."></textarea></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Trust Lines (below buttons)</div>
+        <div class="form-grid tri" style="gap:16px;">
+          <div class="field"><label>Trust Text 1</label><input id="f-trust1" type="text" placeholder="No Joining Fee This Month"/></div>
+          <div class="field"><label>Trust Text 2</label><input id="f-trust2" type="text" placeholder="Cancel Anytime"/></div>
+          <div class="field"><label>Trust Text 3</label><input id="f-trust3" type="text" placeholder="Free Diet Plan"/></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Stat Cards (right side)</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Stat 1 Number</label><input id="f-stat1Num" type="text" placeholder="3,000+"/></div>
+          <div class="field"><label>Stat 1 Label</label><input id="f-stat1Label" type="text" placeholder="Active Members"/></div>
+          <div class="field"><label>Stat 2 Number</label><input id="f-stat2Num" type="text" placeholder="15+"/></div>
+          <div class="field"><label>Stat 2 Label</label><input id="f-stat2Label" type="text" placeholder="Years in Mumbai"/></div>
+          <div class="field"><label>Stat 3 Number</label><input id="f-stat3Num" type="text" placeholder="4.9★"/></div>
+          <div class="field"><label>Stat 3 Label</label><input id="f-stat3Label" type="text" placeholder="Google Rating"/></div>
+          <div class="field"><label>Stat 4 Number</label><input id="f-stat4Num" type="text" placeholder="98%"/></div>
+          <div class="field"><label>Stat 4 Label</label><input id="f-stat4Label" type="text" placeholder="Success Rate"/></div>
+        </div>
+      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="saveHero()">💾 Save Hero</button></div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section-panel" id="panel-about">
+      <div class="sec-header"><div><h2>About Section</h2><p>Edit the about us content</p></div>
+        <button class="btn btn-primary" onclick="saveAbout()">💾 Save</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>About Content</div>
+        <div class="form-grid full" style="gap:16px;">
+          <div class="field"><label>Section Title (HTML allowed)</label><input id="f-aboutTitle" type="text" placeholder="Mumbai Ka Most Trusted Gym"/></div>
+          <div class="field"><label>Paragraph 1</label><textarea id="f-aboutPara1"></textarea></div>
+          <div class="field"><label>Paragraph 2</label><textarea id="f-aboutPara2"></textarea></div>
+          <div class="field"><label>About Image URL</label><input id="f-aboutImg" type="url" placeholder="https://..."/></div>
+        </div>
+        <div class="form-grid" style="gap:16px;margin-top:16px;">
+          <div class="field"><label>Years Badge</label><input id="f-aboutYears" type="text" placeholder="15+"/></div>
+          <div class="field"><label>Members Badge</label><input id="f-aboutMembers" type="text" placeholder="3,000+ Happy Members"/></div>
+        </div>
+      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="saveAbout()">💾 Save About</button></div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-panel" id="panel-services">
+      <div class="sec-header"><div><h2>Services / Programs</h2><p>Manage your gym programs</p></div>
+        <button class="btn btn-primary" onclick="openServiceModal(-1)">+ Add Service</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Sub-heading</div>
+        <div class="field"><label>Section Subtitle</label><input id="f-servicesSub" type="text" placeholder="Beginner se advanced tak..."/>
+        </div>
+        <div class="actions"><button class="btn btn-ghost btn-sm" onclick="saveSub('servicesSub','f-servicesSub')">💾 Save</button></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Programs List</div>
+        <div class="items-list" id="services-list"></div>
+        <div class="add-card" onclick="openServiceModal(-1)" style="margin-top:12px;"><i class="fas fa-plus"></i> Add New Program</div>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="section-panel" id="panel-gallery">
+      <div class="sec-header"><div><h2>Gallery</h2><p>Manage gallery photos</p></div>
+        <button class="btn btn-primary" onclick="openGalleryModal(-1)">+ Add Photo</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Gallery Photos</div>
+        <div class="items-list" id="gallery-list"></div>
+        <div class="add-card" onclick="openGalleryModal(-1)" style="margin-top:12px;"><i class="fas fa-plus"></i> Add Photo</div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="section-panel" id="panel-pricing">
+      <div class="sec-header"><div><h2>Pricing Plans</h2><p>Edit membership plan details</p></div>
+        <button class="btn btn-primary" onclick="savePricing()">💾 Save</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Subtitle</div>
+        <div class="field"><label>Pricing Section Subtitle</label><input id="f-pricingSub" type="text"/></div>
+        <div class="actions"><button class="btn btn-ghost btn-sm" onclick="saveSub('pricingSub','f-pricingSub')">💾 Save</button></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Plan 1 – Starter</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Plan Name</label><input id="f-plan1Name" type="text" placeholder="Starter"/></div>
+          <div class="field"><label>Monthly Price</label><input id="f-plan1Price" type="text" placeholder="₹799"/></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Plan 2 – Pro Elite (Featured)</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Plan Name</label><input id="f-plan2Name" type="text" placeholder="Pro Elite"/></div>
+          <div class="field"><label>Monthly Price</label><input id="f-plan2Price" type="text" placeholder="₹1,799"/></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Plan 3 – Champion</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Plan Name</label><input id="f-plan3Name" type="text" placeholder="Champion"/></div>
+          <div class="field"><label>Monthly Price</label><input id="f-plan3Price" type="text" placeholder="₹3,499"/></div>
+        </div>
+      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="savePricing()">💾 Save Pricing</button></div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="section-panel" id="panel-team">
+      <div class="sec-header"><div><h2>Team / Trainers</h2><p>Manage your trainer profiles</p></div>
+        <button class="btn btn-primary" onclick="openTeamModal(-1)">+ Add Trainer</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Trainers</div>
+        <div class="items-list" id="team-list"></div>
+        <div class="add-card" onclick="openTeamModal(-1)" style="margin-top:12px;"><i class="fas fa-plus"></i> Add Trainer</div>
+      </div>
+    </div>
+
+    <!-- BOOKING -->
+    <div class="section-panel" id="panel-booking">
+      <div class="sec-header"><div><h2>Booking Section</h2><p>Edit trial booking CTA content</p></div>
+        <button class="btn btn-primary" onclick="saveBooking()">💾 Save</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Booking Content</div>
+        <div class="form-grid full" style="gap:16px;">
+          <div class="field"><label>Section Title (HTML allowed)</label><input id="f-bookingTitle" type="text" placeholder="Aaj Hi Shuru Karein"/></div>
+          <div class="field"><label>Subtitle</label><textarea id="f-bookingSub" style="min-height:80px;"></textarea></div>
+        </div>
+      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="saveBooking()">💾 Save Booking</button></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-panel" id="panel-faq">
+      <div class="sec-header"><div><h2>FAQ</h2><p>Edit frequently asked questions</p></div>
+        <button class="btn btn-primary" onclick="openFaqModal(-1)">+ Add FAQ</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>FAQ Items</div>
+        <div class="items-list" id="faq-list"></div>
+        <div class="add-card" onclick="openFaqModal(-1)" style="margin-top:12px;"><i class="fas fa-plus"></i> Add FAQ</div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section-panel" id="panel-contact">
+      <div class="sec-header"><div><h2>Contact Information</h2><p>Update your contact details</p></div>
+        <button class="btn btn-primary" onclick="saveContact()">💾 Save</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Contact Details</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Phone Number</label><input id="f-phone" type="tel" placeholder="+91 98765 43210"/></div>
+          <div class="field"><label>Email Address</label><input id="f-email" type="email" placeholder="info@powerzonegym.in"/></div>
+          <div class="field"><label>Address</label><input id="f-address" type="text" placeholder="Andheri West, Mumbai..."/></div>
+          <div class="field"><label>Hours</label><input id="f-hours" type="text" placeholder="Open 24×7"/></div>
+          <div class="field"><label>Footer Description</label><textarea id="f-footerDesc" style="min-height:80px;"></textarea></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Social Media Links</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Facebook URL</label><input id="f-socialFacebook" type="url" placeholder="https://facebook.com/..."/></div>
+          <div class="field"><label>Instagram URL</label><input id="f-socialInstagram" type="url" placeholder="https://instagram.com/..."/></div>
+          <div class="field"><label>YouTube URL</label><input id="f-socialYoutube" type="url" placeholder="https://youtube.com/..."/></div>
+          <div class="field"><label>Twitter URL</label><input id="f-socialTwitter" type="url" placeholder="https://twitter.com/..."/></div>
+          <div class="field"><label>WhatsApp Number (with country code)</label><input id="f-socialWhatsapp" type="url" placeholder="https://wa.me/91XXXXXXXXXX"/></div>
+        </div>
+      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="saveContact()">💾 Save Contact</button></div>
+    </div>
+
+    <!-- CUSTOM SECTIONS -->
+    <div class="section-panel" id="panel-custom-sections">
+      <div class="sec-header"><div><h2>Custom Sections</h2><p>Add extra content blocks to your site</p></div>
+        <button class="btn btn-primary" onclick="openCustomModal(-1)">+ Add Section</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Custom Content Blocks</div>
+        <div style="font-size:13px;color:var(--text2);margin-bottom:16px;">Add any extra sections like promotions, certifications, announcements, etc. They appear between FAQ and Footer.</div>
+        <div class="items-list" id="custom-sec-list"></div>
+        <div class="add-card" onclick="openCustomModal(-1)" style="margin-top:12px;"><i class="fas fa-plus"></i> Add Custom Section</div>
+      </div>
+    </div>
+
+    <!-- VISIBILITY -->
+    <div class="section-panel" id="panel-visibility">
+      <div class="sec-header"><div><h2>Show / Hide Sections</h2><p>Toggle sections visible on your site</p></div>
+        <button class="btn btn-primary" onclick="saveVisibility()">💾 Save</button></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>Section Visibility</div>
+        <div class="toggle-row"><div class="ti"><h4>About</h4><p>About us section</p></div><label class="toggle"><input type="checkbox" id="t-showAbout" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Services</h4><p>Programs & training</p></div><label class="toggle"><input type="checkbox" id="t-showServices" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Why Choose Us</h4><p>USP section</p></div><label class="toggle"><input type="checkbox" id="t-showWhyUs" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Gallery</h4><p>Photo gallery</p></div><label class="toggle"><input type="checkbox" id="t-showGallery" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Testimonials</h4><p>Member reviews slider</p></div><label class="toggle"><input type="checkbox" id="t-showTestimonials" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Pricing</h4><p>Membership plans</p></div><label class="toggle"><input type="checkbox" id="t-showPricing" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Team</h4><p>Trainer profiles</p></div><label class="toggle"><input type="checkbox" id="t-showTeam" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Booking</h4><p>Free trial form</p></div><label class="toggle"><input type="checkbox" id="t-showBooking" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>FAQ</h4><p>Questions & answers</p></div><label class="toggle"><input type="checkbox" id="t-showFAQ" checked/><span class="slider"></span></label></div>
+        <div class="toggle-row"><div class="ti"><h4>Contact</h4><p>Contact form & info</p></div><label class="toggle"><input type="checkbox" id="t-showContact" checked/><span class="slider"></span></label></div>
+      </div>
+      <div class="actions"><button class="btn btn-primary" onclick="saveVisibility()">💾 Save Visibility</button></div>
+    </div>
+
+    <!-- ENQUIRIES -->
+    <div class="section-panel" id="panel-enquiries">
+      <div class="sec-header"><div><h2>Enquiries</h2><p>Messages from your website contact form</p></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-ghost btn-sm" onclick="markAllRead()">✓ Mark All Read</button>
+          <button class="btn btn-danger btn-sm" onclick="clearAllEnq()">🗑️ Clear All</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot dot-red"></span>Messages</div>
+        <div style="overflow-x:auto;">
+          <table class="eq-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th><th>Status</th><th></th></tr></thead>
+            <tbody id="eq-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="section-panel" id="panel-settings">
+      <div class="sec-header"><div><h2>Settings & SEO</h2><p>Meta, password & data management</p></div></div>
+      <div class="card">
+        <div class="card-title"><span class="dot"></span>SEO & Meta</div>
+        <div class="form-grid full" style="gap:16px;">
+          <div class="field"><label>Page Title</label><input id="f-metaTitle" type="text" placeholder="PowerZone Fitness | Mumbai's #1 Gym"/></div>
+          <div class="field"><label>Meta Description</label><textarea id="f-metaDesc" style="min-height:80px;"></textarea></div>
+        </div>
+        <div class="actions"><button class="btn btn-primary" onclick="saveSEO()">💾 Save SEO</button></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot dot-red"></span>Change Password</div>
+        <div class="form-grid" style="gap:16px;">
+          <div class="field"><label>Current Password</label><input type="password" id="pw-current"/></div>
+          <div class="field"><label>New Password</label><input type="password" id="pw-new"/></div>
+        </div>
+        <div class="actions"><button class="btn btn-primary" onclick="changePassword()">🔒 Update Password</button></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot dot-red"></span>Danger Zone</div>
+        <div class="toggle-row"><div class="ti"><h4>Reset All Content</h4><p>Clears all your changes and restores defaults</p></div><button class="btn btn-danger btn-sm" onclick="resetAll()">Reset Everything</button></div>
+        <div class="toggle-row"><div class="ti"><h4>Export Data</h4><p>Download a JSON backup of all your content</p></div><button class="btn btn-ghost btn-sm" onclick="exportData()">⬇️ Export JSON</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-ov" id="service-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="svc-modal-title">Add Service</div>
+    <div class="form-grid full" style="gap:16px;">
+      <div class="field"><label>Title</label><input type="text" id="svc-title" placeholder="e.g. Strength & Bodybuilding"/></div>
+      <div class="field"><label>Description</label><textarea id="svc-desc" placeholder="Describe this program..."></textarea></div>
+      <div class="field"><label>Font Awesome Icon Class</label><input type="text" id="svc-icon" placeholder="fa-dumbbell"/></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('service-modal')">Cancel</button>
+      <button class="btn btn-primary" id="svc-modal-save">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-ov" id="gallery-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="gal-modal-title">Add Gallery Photo</div>
+    <div class="form-grid full" style="gap:16px;">
+      <div class="field"><label>Image URL</label><input type="url" id="gal-img" placeholder="https://..."/></div>
+      <div class="field"><label>Or upload image</label>
+        <input type="file" accept="image/*" onchange="handleUpload(this,'gal-img','gal-preview')"/>
+        <img id="gal-preview" class="img-preview" src="" alt=""/>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('gallery-modal')">Cancel</button>
+      <button class="btn btn-primary" id="gal-modal-save">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-ov" id="team-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="team-modal-title">Add Trainer</div>
+    <div class="form-grid" style="gap:16px;">
+      <div class="field"><label>Name</label><input type="text" id="tm-name" placeholder="Suresh Patil"/></div>
+      <div class="field"><label>Role</label><input type="text" id="tm-role" placeholder="Strength & Bodybuilding"/></div>
+      <div class="field"><label>Experience</label><input type="text" id="tm-exp" placeholder="12 years exp • ISSA Certified"/></div>
+      <div class="field"><label>Badge (e.g. Head Coach)</label><input type="text" id="tm-cert" placeholder="Head Coach"/></div>
+      <div class="field form-grid-full"><label>Photo URL</label><input type="url" id="tm-img" placeholder="https://..."/></div>
+      <div class="field form-grid-full"><label>Or upload photo</label>
+        <input type="file" accept="image/*" onchange="handleUpload(this,'tm-img','tm-preview')"/>
+        <img id="tm-preview" class="img-preview" src="" alt=""/>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('team-modal')">Cancel</button>
+      <button class="btn btn-primary" id="team-modal-save">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-ov" id="faq-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="faq-modal-title">Add FAQ</div>
+    <div class="form-grid full" style="gap:16px;">
+      <div class="field"><label>Question</label><input type="text" id="faq-q" placeholder="Kya pehla class FREE hai?"/></div>
+      <div class="field"><label>Answer</label><textarea id="faq-a" placeholder="Haan, 100% free!..."></textarea></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('faq-modal')">Cancel</button>
+      <button class="btn btn-primary" id="faq-modal-save">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-ov" id="custom-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="cs-modal-title">Add Custom Section</div>
+    <div class="form-grid full" style="gap:16px;">
+      <div class="field"><label>Section Title</label><input type="text" id="cs-title" placeholder="Special Offer!"/></div>
+      <div class="field"><label>Subtitle / Tag</label><input type="text" id="cs-subtitle" placeholder="Limited Time"/></div>
+      <div class="field"><label>Content</label><textarea id="cs-content" placeholder="Describe this section..."></textarea></div>
+      <div class="field"><label>Image URL (optional)</label><input type="url" id="cs-img" placeholder="https://..."/></div>
+      <div class="field"><label>Or upload image</label>
+        <input type="file" accept="image/*" onchange="handleUpload(this,'cs-img','cs-preview')"/>
+        <img id="cs-preview" class="img-preview" src="" alt=""/>
+      </div>
+      <div class="field"><label>Button Label (optional)</label><input type="text" id="cs-btn-label" placeholder="Learn More"/></div>
+      <div class="field"><label>Button Link</label><input type="url" id="cs-btn-link" placeholder="https://..."/></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('custom-modal')">Cancel</button>
+      <button class="btn btn-primary" id="cs-modal-save">💾 Save Section</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><div class="toast-dot"></div><span id="toast-msg">Saved!</span></div>
+
+<script>
+'use strict';
+var GYM_KEY='gymAdminData', ENQ_KEY='gymEnquiries', AUTH_KEY='gymAdminCreds';
+
+var DEFAULT = {
+  primaryColor:'#FF6B00', bgDark:'#09090B', bgDark2:'#111113',
+  logoText:'PowerZone', logoIcon:'PZ', logoSub:'Fitness Centre',
+  announceText:'<strong>MONSOON OFFER:</strong> Join this week &amp; get 2 months FREE!', showAnnounce:true,
+  heroBadge:'Voted <strong>Mumbai\'s Best Gym 2024</strong> by FitIndia Magazine',
+  heroHeading:'TRAIN<br/><span class="line2">HARD.</span><br/><span class="line3">WIN BIG.</span>',
+  heroDesc:"Mumbai's most result-driven fitness centre. <strong>Expert coaches, world-class equipment</strong>, and a community that pushes you beyond your limits — all from just ₹799/month.",
+  trust1:'No Joining Fee This Month', trust2:'Cancel Anytime', trust3:'Free Diet Plan',
+  stat1Num:'3,000+', stat1Label:'Active Members',
+  stat2Num:'15+', stat2Label:'Years in Mumbai',
+  stat3Num:'4.9★', stat3Label:'Google Rating',
+  stat4Num:'98%', stat4Label:'Success Rate',
+  aboutTitle:'Mumbai Ka <span class="text-primary">Most Trusted</span> Gym',
+  aboutPara1:'2009 mein ek chhote se hall se shuru karke aaj PowerZone 15,000 sq ft ka state-of-the-art fitness campus ban gaya hai. 3,000+ members, 25+ certified trainers aur 98% satisfaction rate ke saath — hum sirf gym nahi, ek movement hain.',
+  aboutPara2:'Hamare saath woh log hain jinhone 50 kg loose kiye, diabetes control kiya, weddings ke liye toned bane, ya sirf zindagi zyada enjoy karna seekha. Aapki kahani bhi yahan likhni hai.',
+  aboutYears:'15+', aboutMembers:'3,000+ Happy Members',
+  aboutImg:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80',
+  servicesSub:'Beginner se advanced tak — har fitness level ke liye tailored programs, sirf expert coaches ke saath.',
+  services:[
+    {title:'Strength & Bodybuilding',desc:'Progressive overload techniques se muscle build karein. Beginner-friendly se competition-ready.',icon:'fa-dumbbell'},
+    {title:'Weight Loss & Fat Burn',desc:'Science-backed HIIT + cardio programs jo fast fat loss dete hain bina muscle lose kiye.',icon:'fa-fire'},
+    {title:'Personal Training (PT)',desc:'1-on-1 dedicated coach jo sirf aapke liye plan banaye. Results fastest track pe aate hain.',icon:'fa-user-check'},
+    {title:'Nutrition & Diet Coaching',desc:'Indian food ke hisaab se customized meal plans. Roti-sabzi khaate hue bhi dream body!',icon:'fa-apple-alt'},
+    {title:'Yoga & Flexibility',desc:'Traditional yoga combined with modern mobility training. Stress kam, flexibility badho.',icon:'fa-spa'},
+    {title:'Group Fitness Classes',desc:'Zumba, CrossFit, Kickboxing — energetic group classes jo gym ko fun banate hain.',icon:'fa-people-carry'}
+  ],
+  gallery:[
+    {img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80'},
+    {img:'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80'},
+    {img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80'},
+    {img:'https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?w=600&q=80'},
+    {img:'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80'},
+    {img:'https://images.unsplash.com/photo-1590239926044-4131f5d0654d?w=600&q=80'}
+  ],
+  pricingSub:'No joining fee this month. First trial class bilkul FREE. EMI available on all plans.',
+  plan1Name:'Starter', plan1Price:'₹799',
+  plan2Name:'Pro Elite', plan2Price:'₹1,799',
+  plan3Name:'Champion', plan3Price:'₹3,499',
+  team:[
+    {name:'Suresh Patil',role:'Strength & Bodybuilding',exp:'12 years exp • ISSA Certified',cert:'Head Coach',img:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80'},
+    {name:'Priya Nair',role:'Weight Loss & Yoga',exp:'9 years exp • ACE Certified',cert:'Women\'s Health',img:'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80'},
+    {name:'Dr. Meera Desai',role:'Clinical Nutritionist',exp:'15 years exp • PhD Nutrition',cert:'Nutrition Expert',img:'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80'},
+    {name:'Vikram Singh',role:'HIIT & CrossFit',exp:'7 years exp • CrossFit L2',cert:'CrossFit',img:'https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?w=400&q=80'}
+  ],
+  bookingTitle:'Aaj Hi <span class="text-primary">Shuru</span> Karein',
+  bookingSub:'Koi risk nahi, koi pressure nahi. Sirf aao, train karo, aur khud decide karo ki PowerZone aapke liye sahi hai ya nahi.',
+  faqs:[
+    {q:'Kya pehla class sach mein FREE hai?',a:'Haan, 100% free! Koi hidden charge nahi. Bas form bharo, aao, train karo!'},
+    {q:'Gym ki timings kya hain?',a:'Pro Elite aur Champion members ke liye hum 24×7 open hain. Starter plan ke liye 6 AM se 10 PM tak.'},
+    {q:'Main bilkul beginner hoon — kya ye gym mere liye hai?',a:'Bilkul! Hamare 40% members beginners hain. Hamare trainers special beginner programs chalate hain. Koi judgment nahi!'},
+    {q:'Membership cancel kar sakte hain?',a:'Haan! 15 din pehle notice de do — no penalty. 30 din mein results nahi mile toh full refund bhi milega.'},
+    {q:'Kya ladies ke liye alag zone hai?',a:'Haan! Dedicated 2,000 sq ft ladies-only workout zone hai jisme female trainers hain.'},
+    {q:'EMI available hai kya?',a:'Bilkul! Sabhi plans par 0% interest EMI available hai — HDFC, ICICI, SBI, Axis Bank ke through.'}
+  ],
+  phone:'+91 98765 43210', email:'info@powerzonegym.in',
+  address:'Plot 48, Infinity Mall ke paas, Andheri West, Mumbai – 400053', hours:'Open 24×7',
+  footerDesc:'Mumbai ka sabse trusted gym — 2009 se. 3,000+ members, 15+ years, 98% success rate.',
+  socialFacebook:'#', socialInstagram:'#', socialYoutube:'#', socialTwitter:'#', socialWhatsapp:'https://wa.me/919876543210',
+  showAbout:true, showServices:true, showWhyUs:true, showGallery:true, showTestimonials:true,
+  showPricing:true, showTeam:true, showBooking:true, showFAQ:true, showContact:true,
+  metaTitle:'PowerZone Fitness | Mumbai\'s #1 Gym & Fitness Centre', metaDesc:'PowerZone Fitness – Mumbai\'s #1 Gym.',
+  customSections:[]
+};
+
+var adminData = {};
+var editCtx = {};
+
+function f(id){return document.getElementById(id);}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function loadData(){
+  var saved={};try{saved=JSON.parse(localStorage.getItem(GYM_KEY))||{};}catch(e){}
+  adminData=Object.assign({},DEFAULT,saved);
+  ['services','gallery','team','faqs','customSections'].forEach(function(k){
+    if(saved[k])adminData[k]=JSON.parse(JSON.stringify(saved[k]));
+    else adminData[k]=JSON.parse(JSON.stringify(DEFAULT[k]));
+  });
+}
+
+function saveData(){
+  localStorage.setItem(GYM_KEY,JSON.stringify(adminData));
+  updateDashboard();
+}
+
+function getCreds(){var c={};try{c=JSON.parse(localStorage.getItem(AUTH_KEY))||{};}catch(e){}return{user:c.user||'admin',pass:c.pass||'admin123'};}
+function doLogin(){
+  var u=f('lu').value.trim(),p=f('lp').value,c=getCreds();
+  if(u===c.user&&p===c.pass){f('login-screen').classList.add('hidden');loadData();populateForms();updateDashboard();toast('Welcome back! 👋');}
+  else{f('lu').style.borderColor='#ff6b6b';f('lp').style.borderColor='#ff6b6b';setTimeout(function(){f('lu').style.borderColor='';f('lp').style.borderColor='';},1500);}
+}
+function doLogout(){f('login-screen').classList.remove('hidden');}
+function changePassword(){
+  var cur=f('pw-current').value,nw=f('pw-new').value,c=getCreds();
+  if(cur!==c.pass){toast('❌ Wrong current password');return;}
+  if(!nw||nw.length<4){toast('❌ Min 4 characters');return;}
+  localStorage.setItem(AUTH_KEY,JSON.stringify({user:c.user,pass:nw}));
+  f('pw-current').value='';f('pw-new').value='';
+  toast('✅ Password updated');
+}
+f('lp').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+
+var toastT;
+function toast(msg){clearTimeout(toastT);f('toast-msg').textContent=msg;f('toast').classList.add('show');toastT=setTimeout(function(){f('toast').classList.remove('show');},3000);}
+
+var pageTitles={dashboard:'Dashboard',appearance:'Colors & Theme',hero:'Hero / Home Section',about:'About Section',services:'Services / Programs',gallery:'Gallery',pricing:'Pricing Plans',team:'Team / Trainers',booking:'Booking Section',faq:'FAQ','custom-sections':'Custom Sections',visibility:'Show / Hide Sections',enquiries:'Enquiries',contact:'Contact Information',settings:'Settings & SEO'};
+document.querySelectorAll('.nav-item').forEach(function(el){
+  el.addEventListener('click',function(){
+    var panel=this.getAttribute('data-panel');
+    document.querySelectorAll('.section-panel').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+    var pp=f('panel-'+panel);if(pp)pp.classList.add('active');
+    this.classList.add('active');
+    f('page-title').textContent=pageTitles[panel]||panel;
+    if(panel==='enquiries')renderEnquiries();
+    if(panel==='dashboard')updateDashboard();
+    if(panel==='services')renderServices();
+    if(panel==='gallery')renderGallery();
+    if(panel==='team')renderTeam();
+    if(panel==='faq')renderFaqs();
+    if(panel==='custom-sections')renderCustomSecs();
+  });
+});
+
+function goPanel(name){document.querySelector('[data-panel="'+name+'"]').click();}
+
+function populateForms(){
+  var d=adminData;
+  // Appearance
+  setVal('f-primaryColor',d.primaryColor);
+  setVal('f-bgDark',d.bgDark);
+  setVal('f-bgDark2',d.bgDark2);
+  setVal('f-logoText',d.logoText);
+  setVal('f-logoIcon',d.logoIcon);
+  setVal('f-logoSub',d.logoSub);
+  // Update hex displays
+  ['f-primaryColor','f-bgDark','f-bgDark2'].forEach(function(id){
+    var el=f(id);if(el&&el.nextElementSibling)el.nextElementSibling.textContent=el.value;
+  });
+  // Hero
+  setVal('f-announceText',d.announceText);
+  setVal('f-showAnnounce',d.showAnnounce?'true':'false');
+  setVal('f-heroBadge',d.heroBadge);
+  setVal('f-heroHeading',d.heroHeading);
+  setVal('f-heroDesc',d.heroDesc);
+  setVal('f-trust1',d.trust1);setVal('f-trust2',d.trust2);setVal('f-trust3',d.trust3);
+  setVal('f-stat1Num',d.stat1Num);setVal('f-stat1Label',d.stat1Label);
+  setVal('f-stat2Num',d.stat2Num);setVal('f-stat2Label',d.stat2Label);
+  setVal('f-stat3Num',d.stat3Num);setVal('f-stat3Label',d.stat3Label);
+  setVal('f-stat4Num',d.stat4Num);setVal('f-stat4Label',d.stat4Label);
+  // About
+  setVal('f-aboutTitle',d.aboutTitle);
+  setVal('f-aboutPara1',d.aboutPara1);setVal('f-aboutPara2',d.aboutPara2);
+  setVal('f-aboutYears',d.aboutYears);setVal('f-aboutMembers',d.aboutMembers);
+  setVal('f-aboutImg',d.aboutImg);
+  // Services sub
+  setVal('f-servicesSub',d.servicesSub);
+  // Pricing
+  setVal('f-pricingSub',d.pricingSub);
+  setVal('f-plan1Name',d.plan1Name);setVal('f-plan1Price',d.plan1Price);
+  setVal('f-plan2Name',d.plan2Name);setVal('f-plan2Price',d.plan2Price);
+  setVal('f-plan3Name',d.plan3Name);setVal('f-plan3Price',d.plan3Price);
+  // Booking
+  setVal('f-bookingTitle',d.bookingTitle);setVal('f-bookingSub',d.bookingSub);
+  // Contact
+  setVal('f-phone',d.phone);setVal('f-email',d.email);
+  setVal('f-address',d.address);setVal('f-hours',d.hours);
+  setVal('f-footerDesc',d.footerDesc);
+  setVal('f-socialFacebook',d.socialFacebook);setVal('f-socialInstagram',d.socialInstagram);
+  setVal('f-socialYoutube',d.socialYoutube);setVal('f-socialTwitter',d.socialTwitter);
+  setVal('f-socialWhatsapp',d.socialWhatsapp);
+  // SEO
+  setVal('f-metaTitle',d.metaTitle);setVal('f-metaDesc',d.metaDesc);
+  // Visibility
+  setChk('t-showAbout',d.showAbout);setChk('t-showServices',d.showServices);
+  setChk('t-showWhyUs',d.showWhyUs);setChk('t-showGallery',d.showGallery);
+  setChk('t-showTestimonials',d.showTestimonials);setChk('t-showPricing',d.showPricing);
+  setChk('t-showTeam',d.showTeam);setChk('t-showBooking',d.showBooking);
+  setChk('t-showFAQ',d.showFAQ);setChk('t-showContact',d.showContact);
+}
+
+function setVal(id,v){var el=f(id);if(el&&v!==undefined&&v!==null)el.value=v;}
+function setChk(id,v){var el=f(id);if(el)el.checked=!!v;}
+
+function saveAppearance(){
+  adminData.primaryColor=f('f-primaryColor').value;
+  adminData.bgDark=f('f-bgDark').value;
+  adminData.bgDark2=f('f-bgDark2').value;
+  adminData.logoText=f('f-logoText').value;
+  adminData.logoIcon=f('f-logoIcon').value;
+  adminData.logoSub=f('f-logoSub').value;
+  saveData();toast('✅ Appearance saved! Refresh site to see changes.');
+}
+
+function saveHero(){
+  adminData.announceText=f('f-announceText').value;
+  adminData.showAnnounce=f('f-showAnnounce').value==='true';
+  adminData.heroBadge=f('f-heroBadge').value;
+  adminData.heroHeading=f('f-heroHeading').value;
+  adminData.heroDesc=f('f-heroDesc').value;
+  adminData.trust1=f('f-trust1').value;adminData.trust2=f('f-trust2').value;adminData.trust3=f('f-trust3').value;
+  adminData.stat1Num=f('f-stat1Num').value;adminData.stat1Label=f('f-stat1Label').value;
+  adminData.stat2Num=f('f-stat2Num').value;adminData.stat2Label=f('f-stat2Label').value;
+  adminData.stat3Num=f('f-stat3Num').value;adminData.stat3Label=f('f-stat3Label').value;
+  adminData.stat4Num=f('f-stat4Num').value;adminData.stat4Label=f('f-stat4Label').value;
+  saveData();toast('✅ Hero section saved!');
+}
+
+function saveAbout(){
+  adminData.aboutTitle=f('f-aboutTitle').value;
+  adminData.aboutPara1=f('f-aboutPara1').value;adminData.aboutPara2=f('f-aboutPara2').value;
+  adminData.aboutYears=f('f-aboutYears').value;adminData.aboutMembers=f('f-aboutMembers').value;
+  adminData.aboutImg=f('f-aboutImg').value;
+  saveData();toast('✅ About saved!');
+}
+
+function saveSub(key,fid){
+  adminData[key]=f(fid).value;saveData();toast('✅ Saved!');
+}
+
+function savePricing(){
+  adminData.pricingSub=f('f-pricingSub').value;
+  adminData.plan1Name=f('f-plan1Name').value;adminData.plan1Price=f('f-plan1Price').value;
+  adminData.plan2Name=f('f-plan2Name').value;adminData.plan2Price=f('f-plan2Price').value;
+  adminData.plan3Name=f('f-plan3Name').value;adminData.plan3Price=f('f-plan3Price').value;
+  saveData();toast('✅ Pricing saved!');
+}
+
+function saveBooking(){
+  adminData.bookingTitle=f('f-bookingTitle').value;
+  adminData.bookingSub=f('f-bookingSub').value;
+  saveData();toast('✅ Booking saved!');
+}
+
+function saveContact(){
+  adminData.phone=f('f-phone').value;adminData.email=f('f-email').value;
+  adminData.address=f('f-address').value;adminData.hours=f('f-hours').value;
+  adminData.footerDesc=f('f-footerDesc').value;
+  adminData.socialFacebook=f('f-socialFacebook').value;
+  adminData.socialInstagram=f('f-socialInstagram').value;
+  adminData.socialYoutube=f('f-socialYoutube').value;
+  adminData.socialTwitter=f('f-socialTwitter').value;
+  adminData.socialWhatsapp=f('f-socialWhatsapp').value;
+  saveData();toast('✅ Contact saved!');
+}
+
+function saveSEO(){
+  adminData.metaTitle=f('f-metaTitle').value;adminData.metaDesc=f('f-metaDesc').value;
+  saveData();toast('✅ SEO saved!');
+}
+
+function saveVisibility(){
+  adminData.showAbout=f('t-showAbout').checked;
+  adminData.showServices=f('t-showServices').checked;
+  adminData.showWhyUs=f('t-showWhyUs').checked;
+  adminData.showGallery=f('t-showGallery').checked;
+  adminData.showTestimonials=f('t-showTestimonials').checked;
+  adminData.showPricing=f('t-showPricing').checked;
+  adminData.showTeam=f('t-showTeam').checked;
+  adminData.showBooking=f('t-showBooking').checked;
+  adminData.showFAQ=f('t-showFAQ').checked;
+  adminData.showContact=f('t-showContact').checked;
+  saveData();toast('✅ Visibility saved!');
+}
+
+// === RENDER LISTS ===
+function renderServices(){
+  var el=f('services-list');if(!el)return;
+  if(!adminData.services||!adminData.services.length){el.innerHTML='<div style="color:var(--text3);padding:16px;">No services yet.</div>';return;}
+  el.innerHTML=adminData.services.map(function(s,i){
+    return '<div class="item-row"><div class="item-row-num">'+(i+1)+'</div>'+
+      '<div class="item-row-info"><div class="item-row-title">'+esc(s.title)+'</div>'+
+      '<div class="item-row-sub">'+esc(s.desc)+'</div></div>'+
+      '<button class="edit-btn" onclick="openServiceModal('+i+')">✏️</button>'+
+      '<button class="del-btn" onclick="delItem(\'services\','+i+')">🗑️</button></div>';
+  }).join('');
+}
+function renderGallery(){
+  var el=f('gallery-list');if(!el)return;
+  if(!adminData.gallery||!adminData.gallery.length){el.innerHTML='<div style="color:var(--text3);padding:16px;">No photos yet.</div>';return;}
+  el.innerHTML=adminData.gallery.map(function(g,i){
+    return '<div class="item-row">'+
+      '<img src="'+esc(g.img)+'" class="preview-thumb" alt=""/>'+
+      '<div class="item-row-info"><div class="item-row-sub">'+esc(g.img.substring(0,60))+'...</div></div>'+
+      '<button class="edit-btn" onclick="openGalleryModal('+i+')">✏️</button>'+
+      '<button class="del-btn" onclick="delItem(\'gallery\','+i+')">🗑️</button></div>';
+  }).join('');
+}
+function renderTeam(){
+  var el=f('team-list');if(!el)return;
+  if(!adminData.team||!adminData.team.length){el.innerHTML='<div style="color:var(--text3);padding:16px;">No trainers yet.</div>';return;}
+  el.innerHTML=adminData.team.map(function(t,i){
+    return '<div class="item-row">'+
+      (t.img?'<img src="'+esc(t.img)+'" class="preview-thumb" style="border-radius:50%;width:42px;height:42px;" alt=""/>':'<div style="width:42px;height:42px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;">👤</div>')+
+      '<div class="item-row-info"><div class="item-row-title">'+esc(t.name)+'</div>'+
+      '<div class="item-row-sub">'+esc(t.role)+'</div></div>'+
+      '<button class="edit-btn" onclick="openTeamModal('+i+')">✏️</button>'+
+      '<button class="del-btn" onclick="delItem(\'team\','+i+')">🗑️</button></div>';
+  }).join('');
+}
+function renderFaqs(){
+  var el=f('faq-list');if(!el)return;
+  if(!adminData.faqs||!adminData.faqs.length){el.innerHTML='<div style="color:var(--text3);padding:16px;">No FAQs yet.</div>';return;}
+  el.innerHTML=adminData.faqs.map(function(fq,i){
+    return '<div class="item-row"><div class="item-row-num">'+(i+1)+'</div>'+
+      '<div class="item-row-info"><div class="item-row-title">'+esc(fq.q)+'</div>'+
+      '<div class="item-row-sub">'+esc(fq.a)+'</div></div>'+
+      '<button class="edit-btn" onclick="openFaqModal('+i+')">✏️</button>'+
+      '<button class="del-btn" onclick="delItem(\'faqs\','+i+')">🗑️</button></div>';
+  }).join('');
+}
+function renderCustomSecs(){
+  var el=f('custom-sec-list');if(!el)return;
+  if(!adminData.customSections||!adminData.customSections.length){el.innerHTML='<div style="color:var(--text3);padding:16px;">📭 No custom sections yet. Add promotions, certifications, special content, etc.</div>';return;}
+  el.innerHTML=adminData.customSections.map(function(cs,i){
+    return '<div class="item-row"><div class="item-row-num">'+(i+1)+'</div>'+
+      '<div class="item-row-info"><div class="item-row-title">'+esc(cs.title)+'</div>'+
+      '<div class="item-row-sub">'+esc((cs.content||'').substring(0,60))+'</div></div>'+
+      '<button class="edit-btn" onclick="openCustomModal('+i+')">✏️</button>'+
+      '<button class="del-btn" onclick="delItem(\'customSections\','+i+')">🗑️</button></div>';
+  }).join('');
+}
+
+function delItem(key,idx){
+  if(!confirm('Delete this item?'))return;
+  adminData[key].splice(idx,1);saveData();
+  if(key==='services')renderServices();
+  if(key==='gallery')renderGallery();
+  if(key==='team')renderTeam();
+  if(key==='faqs')renderFaqs();
+  if(key==='customSections')renderCustomSecs();
+  toast('✅ Deleted');
+}
+
+// === MODALS ===
+function openModal(id){f(id).classList.add('show');}
+function closeModal(id){f(id).classList.remove('show');}
+
+// Service Modal
+var svcIdx=-1;
+function openServiceModal(idx){
+  svcIdx=idx;
+  f('svc-modal-title').textContent=(idx>=0?'Edit':'Add')+' Service';
+  var item=(idx>=0&&adminData.services&&adminData.services[idx])||{};
+  setVal('svc-title',item.title||'');setVal('svc-desc',item.desc||'');setVal('svc-icon',item.icon||'fa-dumbbell');
+  f('svc-modal-save').onclick=saveServiceModal;
+  openModal('service-modal');
+}
+function saveServiceModal(){
+  if(!adminData.services)adminData.services=[];
+  var item={title:f('svc-title').value,desc:f('svc-desc').value,icon:f('svc-icon').value||'fa-dumbbell'};
+  if(svcIdx>=0)adminData.services[svcIdx]=item;else adminData.services.push(item);
+  saveData();renderServices();closeModal('service-modal');toast('✅ Service saved!');
+}
+
+// Gallery Modal
+var galIdx=-1;
+function openGalleryModal(idx){
+  galIdx=idx;
+  f('gal-modal-title').textContent=(idx>=0?'Edit':'Add')+' Photo';
+  var item=(idx>=0&&adminData.gallery&&adminData.gallery[idx])||{};
+  setVal('gal-img',item.img||'');
+  var pv=f('gal-preview');if(pv){pv.src=item.img||'';pv.classList[item.img?'add':'remove']('show');}
+  f('gal-modal-save').onclick=saveGalleryModal;
+  openModal('gallery-modal');
+}
+function saveGalleryModal(){
+  if(!adminData.gallery)adminData.gallery=[];
+  var item={img:f('gal-img').value};
+  if(galIdx>=0)adminData.gallery[galIdx]=item;else adminData.gallery.push(item);
+  saveData();renderGallery();closeModal('gallery-modal');toast('✅ Photo saved!');
+}
+
+// Team Modal
+var teamIdx=-1;
+function openTeamModal(idx){
+  teamIdx=idx;
+  f('team-modal-title').textContent=(idx>=0?'Edit':'Add')+' Trainer';
+  var item=(idx>=0&&adminData.team&&adminData.team[idx])||{};
+  setVal('tm-name',item.name||'');setVal('tm-role',item.role||'');
+  setVal('tm-exp',item.exp||'');setVal('tm-cert',item.cert||'');setVal('tm-img',item.img||'');
+  var pv=f('tm-preview');if(pv){pv.src=item.img||'';pv.classList[item.img?'add':'remove']('show');}
+  f('team-modal-save').onclick=saveTeamModal;
+  openModal('team-modal');
+}
+function saveTeamModal(){
+  if(!adminData.team)adminData.team=[];
+  var item={name:f('tm-name').value,role:f('tm-role').value,exp:f('tm-exp').value,cert:f('tm-cert').value,img:f('tm-img').value};
+  if(teamIdx>=0)adminData.team[teamIdx]=item;else adminData.team.push(item);
+  saveData();renderTeam();closeModal('team-modal');toast('✅ Trainer saved!');
+}
+
+// FAQ Modal
+var faqIdx=-1;
+function openFaqModal(idx){
+  faqIdx=idx;
+  f('faq-modal-title').textContent=(idx>=0?'Edit':'Add')+' FAQ';
+  var item=(idx>=0&&adminData.faqs&&adminData.faqs[idx])||{};
+  setVal('faq-q',item.q||'');setVal('faq-a',item.a||'');
+  f('faq-modal-save').onclick=saveFaqModal;
+  openModal('faq-modal');
+}
+function saveFaqModal(){
+  if(!adminData.faqs)adminData.faqs=[];
+  var item={q:f('faq-q').value,a:f('faq-a').value};
+  if(faqIdx>=0)adminData.faqs[faqIdx]=item;else adminData.faqs.push(item);
+  saveData();renderFaqs();closeModal('faq-modal');toast('✅ FAQ saved!');
+}
+
+// Custom Section Modal
+var csIdx=-1;
+function openCustomModal(idx){
+  csIdx=idx;
+  f('cs-modal-title').textContent=(idx>=0?'Edit':'Add')+' Custom Section';
+  var item=(idx>=0&&adminData.customSections&&adminData.customSections[idx])||{};
+  setVal('cs-title',item.title||'');setVal('cs-subtitle',item.subtitle||'');
+  setVal('cs-content',item.content||'');setVal('cs-img',item.img||'');
+  setVal('cs-btn-label',item.btnLabel||'');setVal('cs-btn-link',item.btnLink||'');
+  var pv=f('cs-preview');if(pv){pv.src=item.img||'';pv.classList[item.img?'add':'remove']('show');}
+  f('cs-modal-save').onclick=saveCustomModal;
+  openModal('custom-modal');
+}
+function saveCustomModal(){
+  if(!adminData.customSections)adminData.customSections=[];
+  var item={title:f('cs-title').value,subtitle:f('cs-subtitle').value,content:f('cs-content').value,img:f('cs-img').value,btnLabel:f('cs-btn-label').value,btnLink:f('cs-btn-link').value};
+  if(csIdx>=0)adminData.customSections[csIdx]=item;else adminData.customSections.push(item);
+  saveData();renderCustomSecs();closeModal('custom-modal');toast('✅ Custom section saved!');
+}
+
+// Image Upload
+function handleUpload(input,targetId,previewId){
+  var file=input.files[0];if(!file)return;
+  if(file.size>5*1024*1024){toast('❌ Image too large (max 5MB)');return;}
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var el=f(targetId);if(el)el.value=e.target.result;
+    var pv=f(previewId);if(pv){pv.src=e.target.result;pv.classList.add('show');}
+  };
+  reader.readAsDataURL(file);
+}
+
+// Close modals on overlay click
+['service-modal','gallery-modal','team-modal','faq-modal','custom-modal'].forEach(function(id){
+  var el=f(id);if(el)el.addEventListener('click',function(e){if(e.target===this)closeModal(id);});
+});
+
+// Enquiries
+function renderEnquiries(){
+  var list=[];try{list=JSON.parse(localStorage.getItem(ENQ_KEY))||[];}catch(e){}
+  var tb=f('eq-tbody');if(!tb)return;
+  if(!list.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--text3);">📭 No enquiries yet. Contact forms from the website will appear here.</td></tr>';return;}
+  tb.innerHTML=list.map(function(eq,i){
+    return '<tr><td>'+esc(eq.name||'')+'</td><td>'+esc(eq.email||'')+'</td><td>'+esc(eq.phone||'')+'</td>'+
+      '<td style="max-width:180px;white-space:normal;">'+esc((eq.message||'').substring(0,80))+'</td>'+
+      '<td style="white-space:nowrap;">'+esc(eq.date||'')+'</td>'+
+      '<td><span class="'+(eq.status==='new'?'s-new':'s-read')+'">'+esc(eq.status||'new')+'</span></td>'+
+      '<td><button class="del-btn" onclick="deleteEnq('+i+')">🗑️</button></td></tr>';
+  }).join('');
+  // Update badge
+  var newCount=list.filter(function(e){return e.status==='new';}).length;
+  var badge=f('eq-badge');if(badge){badge.textContent=newCount;badge.style.display=newCount?'inline':'none';}
+}
+function markAllRead(){
+  var list=[];try{list=JSON.parse(localStorage.getItem(ENQ_KEY))||[];}catch(e){}
+  list.forEach(function(eq){eq.status='read';});
+  localStorage.setItem(ENQ_KEY,JSON.stringify(list));
+  renderEnquiries();updateDashboard();toast('✅ All marked read');
+}
+function deleteEnq(idx){
+  var list=[];try{list=JSON.parse(localStorage.getItem(ENQ_KEY))||[];}catch(e){}
+  list.splice(idx,1);localStorage.setItem(ENQ_KEY,JSON.stringify(list));
+  renderEnquiries();updateDashboard();
+}
+function clearAllEnq(){
+  if(!confirm('Delete ALL enquiries?'))return;
+  localStorage.removeItem(ENQ_KEY);renderEnquiries();updateDashboard();toast('✅ All cleared');
+}
+
+function updateDashboard(){
+  var list=[];try{list=JSON.parse(localStorage.getItem(ENQ_KEY))||[];}catch(e){}
+  var newC=list.filter(function(e){return e.status==='new';}).length;
+  setVal('d-enq',list.length);setVal('d-new',newC);
+  setVal('d-srv',(adminData.services||[]).length);
+  setVal('d-gal',(adminData.gallery||[]).length);
+  setVal('d-team',(adminData.team||[]).length);
+  setVal('d-cs',(adminData.customSections||[]).length);
+  var badge=f('eq-badge');if(badge){badge.textContent=newC;badge.style.display=newC?'inline':'none';}
+}
+function setVal(id,v){var el=f(id);if(el)el.value!==undefined?el.value=v:el.textContent=v;}
+// override for stat cards which use textContent
+function setValText(id,v){var el=f(id);if(el)el.textContent=v;}
+['d-enq','d-new','d-srv','d-gal','d-team','d-cs'].forEach(function(id){
+  Object.defineProperty(window,'setVal_'+id,{get:function(){return function(v){var el=f(id);if(el)el.textContent=v;};}});
+});
+function updateDashboard(){
+  var list=[];try{list=JSON.parse(localStorage.getItem(ENQ_KEY))||[];}catch(e){}
+  var newC=list.filter(function(e){return e.status==='new';}).length;
+  function sv(id,v){var el=f(id);if(el){if(el.tagName==='INPUT')el.value=v;else el.textContent=v;}}
+  sv('d-enq',list.length);sv('d-new',newC);
+  sv('d-srv',(adminData.services||[]).length);
+  sv('d-gal',(adminData.gallery||[]).length);
+  sv('d-team',(adminData.team||[]).length);
+  sv('d-cs',(adminData.customSections||[]).length);
+  var badge=f('eq-badge');if(badge){badge.textContent=newC;badge.style.display=newC?'inline':'none';}
+}
+
+function resetAll(){if(!confirm('Reset ALL content? Cannot be undone!'))return;localStorage.removeItem(GYM_KEY);loadData();populateForms();toast('✅ Reset done');}
+function exportData(){var blob=new Blob([JSON.stringify(adminData,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='powerzone-backup-'+Date.now()+'.json';a.click();toast('✅ Exported');}
+function previewSite(){window.open('gym-india-pro.html','_blank');}
+
+// INIT
+loadData();populateForms();updateDashboard();
+</script>
+</body>
+</html>
