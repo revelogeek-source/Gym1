@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta id="meta-desc" name="description" content="PowerZone Fitness – Mumbai's #1 Gym. Expert trainers, affordable membership from ₹799/month. Free trial available. Join 3000+ members today!"/>
+<title id="page-title">PowerZone Fitness | Mumbai's #1 Gym & Fitness Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root {
+  --primary:    #FF6B00;
+  --primary2:   #FF8C33;
+  --primary-glow: rgba(255,107,0,0.25);
+  --green:      #00C853;
+  --dark:       #09090B;
+  --dark2:      #111113;
+  --dark3:      #18181B;
+  --card:       #1C1C1F;
+  --card2:      #232327;
+  --white:      #FFFFFF;
+  --off:        #F4F4F5;
+  --muted:      #71717A;
+  --muted2:     #A1A1AA;
+  --border:     rgba(255,255,255,0.06);
+  --border2:    rgba(255,107,0,0.2);
+  --radius-sm:  8px;
+  --radius:     14px;
+  --radius-lg:  24px;
+  --shadow-glow: 0 0 60px rgba(255,107,0,0.18);
+  --transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  --bg-body: #09090B;
+  --bg-section: #09090B;
+  --bg-section2: #111113;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Nunito',sans-serif;background:var(--bg-body);color:var(--white);overflow-x:hidden;line-height:1.6;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--dark);}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px;}
+::selection{background:var(--primary);color:#fff;}
+
+.display{font-family:'Rajdhani',sans-serif;font-weight:700;}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px;}
+section{padding:96px 0;}
+.section-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,107,0,0.1);border:1px solid rgba(255,107,0,0.25);color:var(--primary);padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+.section-tag i{font-size:11px;}
+.section-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(40px,5.5vw,68px);line-height:1.05;margin-bottom:14px;}
+.section-sub{font-size:17px;color:var(--muted2);line-height:1.8;max-width:560px;}
+.text-primary{color:var(--primary);}
+.text-center{text-align:center;}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;padding:14px 30px;border-radius:var(--radius-sm);border:none;cursor:pointer;transition:var(--transition);white-space:nowrap;}
+.btn-orange{background:var(--primary);color:#fff;box-shadow:0 4px 20px rgba(255,107,0,0.35);}
+.btn-orange:hover{background:#E55F00;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,0,0.5);}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 4px 20px rgba(0,200,83,0.3);}
+.btn-green:hover{background:#00B048;transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.2);}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+.btn-lg{padding:17px 38px;font-size:16px;}
+
+.rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease;}
+.rv.l{transform:translateX(-40px);}
+.rv.r{transform:translateX(40px);}
+.rv.s{transform:scale(0.92);}
+.rv.on{opacity:1;transform:none;}
+.d1{transition-delay:.1s!important;}.d2{transition-delay:.2s!important;}.d3{transition-delay:.3s!important;}.d4{transition-delay:.4s!important;}.d5{transition-delay:.5s!important;}.d6{transition-delay:.6s!important;}
+
+/* HEADER */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(9,9,11,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:var(--transition);}
+#hdr.scrolled{background:rgba(9,9,11,0.97);border-color:var(--border2);}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1240px;margin:0 auto;padding:0 24px;}
+.logo-block{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:40px;height:40px;border-radius:10px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;}
+.logo-text{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;line-height:1.1;}
+.logo-text span{color:var(--primary);}
+.logo-sub{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+.nav-links{display:flex;gap:30px;}
+.nav-links a{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);transition:color .2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-actions{display:flex;align-items:center;gap:10px;}
+.nav-phone{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--muted2);padding:8px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:var(--transition);}
+.nav-phone:hover{border-color:var(--border2);color:var(--white);}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+.hbg span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s;}
+.hbg.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hbg.open span:nth-child(2){opacity:0;}
+.hbg.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{position:fixed;top:68px;left:0;right:0;background:var(--dark2);border-bottom:1px solid var(--border);overflow:hidden;max-height:0;transition:max-height .4s ease;z-index:999;}
+.mob-menu.open{max-height:500px;}
+.mob-menu-inner{padding:16px 24px 28px;display:flex;flex-direction:column;gap:4px;}
+.mob-menu a{display:flex;align-items:center;gap:10px;padding:13px 0;font-size:16px;font-weight:700;color:var(--muted2);border-bottom:1px solid var(--border);transition:color .2s;}
+.mob-menu a:hover,.mob-menu a:last-child{color:var(--primary);}
+.mob-menu a:last-child{border:none;justify-content:center;margin-top:8px;}
+
+/* HERO */
+#hero{min-height:100vh;padding-top:68px;position:relative;overflow:hidden;display:flex;align-items:center;background:var(--bg-body);}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+.orb-1{width:600px;height:600px;background:rgba(255,107,0,0.12);top:-100px;right:-100px;animation:orbFloat1 8s ease-in-out infinite;}
+.orb-2{width:400px;height:400px;background:rgba(255,107,0,0.06);bottom:-50px;left:-50px;animation:orbFloat2 10s ease-in-out infinite;}
+.orb-3{width:200px;height:200px;background:rgba(0,200,83,0.06);top:40%;left:40%;animation:orbFloat3 7s ease-in-out infinite;}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0);}50%{transform:translate(-30px,40px);}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0);}50%{transform:translate(30px,-30px);}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0);}50%{transform:translate(-20px,20px);}}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:64px 64px;}
+.hero-diag{position:absolute;top:0;right:15%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,107,0,0.4),transparent);}
+.hero-diag2{position:absolute;top:0;right:30%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,107,0,0.1),transparent);}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;padding:80px 0 60px;}
+.hero-award{display:inline-flex;align-items:center;gap:10px;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.2);padding:8px 16px;border-radius:50px;margin-bottom:28px;animation:fadeDown .8s ease both;}
+.hero-award-icon{width:28px;height:28px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.hero-award span{font-size:12px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.8);}
+.hero-award strong{color:var(--primary);}
+.hero-h1{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(60px,9vw,116px);line-height:.95;letter-spacing:-1px;margin-bottom:24px;animation:fadeUp .8s ease .15s both;}
+.hero-h1 .line2{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.3);}
+.hero-h1 .line3{color:var(--primary);}
+.hero-desc{font-size:17px;color:var(--muted2);line-height:1.8;max-width:480px;margin-bottom:40px;animation:fadeUp .8s ease .3s both;}
+.hero-desc strong{color:var(--white);}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px;animation:fadeUp .8s ease .45s both;}
+.hero-trust{display:flex;align-items:center;gap:20px;flex-wrap:wrap;animation:fadeUp .8s ease .6s both;}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--muted2);}
+.trust-item i{color:var(--primary);font-size:14px;}
+.trust-divider{width:1px;height:18px;background:var(--border);}
+.hero-card-wrap{display:flex;flex-direction:column;gap:16px;flex-shrink:0;animation:fadeUp .8s ease .5s both;}
+.hero-stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;min-width:180px;position:relative;overflow:hidden;transition:var(--transition);}
+.hero-stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary);}
+.hero-stat-card:hover{transform:translateX(-4px);border-color:var(--border2);}
+.hsc-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:40px;color:var(--primary);line-height:1;}
+.hsc-label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+.hsc-icon{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:8px;background:rgba(255,107,0,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.hero-announce{background:linear-gradient(90deg,var(--primary),#FF8C33);padding:12px 24px;text-align:center;font-size:13px;font-weight:700;letter-spacing:.5px;display:flex;align-items:center;justify-content:center;gap:12px;animation:fadeDown .8s ease both;}
+.hero-announce a{background:rgba(0,0,0,0.2);padding:4px 12px;border-radius:50px;font-size:11px;letter-spacing:1px;text-transform:uppercase;transition:.2s;}
+.hero-announce a:hover{background:rgba(0,0,0,0.35);}
+
+/* TRUST BAR */
+#trustbar{padding:28px 0;background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.trustbar-inner{display:flex;align-items:center;gap:48px;flex-wrap:wrap;justify-content:center;}
+.trust-badge{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;transition:.2s;}
+.trust-badge:hover{color:var(--muted2);}
+.trust-badge i{font-size:20px;color:var(--primary);}
+.trust-sep{width:1px;height:28px;background:var(--border);}
+
+/* ABOUT */
+#about{background:var(--bg-section);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-main{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:0 24px 80px rgba(0,0,0,0.5);background:var(--card2);display:flex;align-items:center;justify-content:center;color:var(--muted);}
+.about-img-main img{width:100%;height:100%;object-fit:cover;}
+.about-float-1{position:absolute;top:32px;right:-28px;background:var(--primary);color:#fff;padding:18px 22px;border-radius:var(--radius);box-shadow:0 12px 40px rgba(255,107,0,0.4);}
+.af1-num{font-family:'Rajdhani',sans-serif;font-size:44px;font-weight:700;line-height:1;}
+.af1-text{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.85;margin-top:2px;}
+.about-float-2{position:absolute;bottom:40px;left:-28px;background:var(--card);border:1px solid var(--border2);padding:16px 20px;border-radius:var(--radius);display:flex;align-items:center;gap:14px;box-shadow:0 12px 40px rgba(0,0,0,0.4);min-width:200px;}
+.af2-icon{width:44px;height:44px;border-radius:10px;background:rgba(0,200,83,0.15);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.af2-label{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.af2-val{font-size:14px;font-weight:700;color:var(--white);margin-top:2px;}
+.about-img-side{position:relative;}
+.about-body{font-size:16px;color:var(--muted2);line-height:1.8;margin-bottom:12px;}
+.about-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0;}
+.ah-item{display:flex;align-items:flex-start;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;transition:var(--transition);}
+.ah-item:hover{border-color:var(--border2);}
+.ah-icon{width:36px;height:36px;border-radius:8px;flex-shrink:0;background:rgba(255,107,0,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ah-text{font-size:13px;font-weight:700;color:var(--white);margin-top:6px;}
+.skill-bar{height:5px;background:var(--card2);border-radius:3px;margin-top:20px;overflow:hidden;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--primary),#FF8C33);border-radius:3px;width:0;transition:width 1.5s ease;}
+
+/* SERVICES */
+#services{background:var(--bg-section2);}
+.srv-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:56px;}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.srv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:30px 26px;position:relative;overflow:hidden;transition:var(--transition);cursor:pointer;}
+.srv-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--primary),#FF8C33);opacity:0;transition:opacity .35s;}
+.srv-card:hover{transform:scale(1.02);z-index:2;}
+.srv-card:hover::after{opacity:1;}
+.srv-card>*{position:relative;z-index:1;}
+.srv-card:hover .srv-icon{background:rgba(255,255,255,0.2);color:#fff;}
+.srv-card:hover h3,.srv-card:hover p,.srv-card:hover .srv-num{color:#fff;}
+.srv-card:hover .srv-arrow{color:#fff;}
+.srv-num{font-family:'Rajdhani',sans-serif;font-size:64px;font-weight:700;color:rgba(255,255,255,0.04);line-height:1;margin-bottom:-10px;transition:.3s;}
+.srv-icon{width:52px;height:52px;border-radius:12px;background:rgba(255,107,0,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;transition:.3s;}
+.srv-card h3{font-family:'Rajdhani',sans-serif;font-size:21px;font-weight:700;letter-spacing:.5px;margin-bottom:10px;transition:.3s;}
+.srv-card p{font-size:13.5px;color:var(--muted2);line-height:1.7;transition:.3s;}
+.srv-arrow{display:inline-block;margin-top:20px;color:var(--primary);font-size:18px;transition:.3s;}
+
+/* WHY CHOOSE US */
+#whyus{background:var(--bg-section);position:relative;overflow:hidden;}
+.whyus-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 50%,rgba(255,107,0,0.06) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 60%,rgba(0,200,83,0.04) 0%,transparent 70%);}
+.whyus-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.whyus-left .section-sub{margin-top:8px;margin-bottom:32px;}
+.whyus-big-stat{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:32px;}
+.wbs-item{padding:20px 24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);flex:1;min-width:130px;text-align:center;transition:var(--transition);}
+.wbs-item:hover{border-color:var(--border2);transform:translateY(-4px);}
+.wbs-num{font-family:'Rajdhani',sans-serif;font-size:38px;font-weight:700;color:var(--primary);line-height:1;}
+.wbs-text{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-top:6px;}
+.whyus-cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+.whyus-right{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.why-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 22px;transition:var(--transition);}
+.why-box:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:var(--shadow-glow);}
+.why-box:first-child{grid-column:1/-1;}
+.wb-icon{width:48px;height:48px;border-radius:12px;background:rgba(255,107,0,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+.why-box.green-box .wb-icon{background:rgba(0,200,83,0.1);color:var(--green);}
+.wb-check{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:6px;}
+.why-box.green-box .wb-check{color:var(--green);}
+.wb-title{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;margin-bottom:8px;}
+.wb-text{font-size:13px;color:var(--muted2);line-height:1.7;}
+
+/* GALLERY */
+#gallery{background:var(--bg-section2);}
+.gal-head{text-align:center;margin-bottom:48px;}
+.gal-head .section-sub{margin:0 auto;}
+.gal-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:260px 200px;gap:6px;border-radius:var(--radius-lg);overflow:hidden;}
+.gal-item{position:relative;overflow:hidden;cursor:pointer;}
+.gal-item:nth-child(1){grid-column:1/3;grid-row:1/3;}
+.gal-item:nth-child(2){grid-column:3/5;}
+.gal-item:nth-child(3){grid-column:5/7;}
+.gal-item:nth-child(4){grid-column:3/4;}
+.gal-item:nth-child(5){grid-column:4/5;}
+.gal-item:nth-child(6){grid-column:5/7;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.gal-item:hover img{transform:scale(1.08);}
+.gal-overlay{position:absolute;inset:0;background:transparent;display:flex;align-items:center;justify-content:center;transition:.4s;}
+.gal-overlay i{color:#fff;font-size:28px;opacity:0;transform:scale(.5);transition:.4s;}
+.gal-item:hover .gal-overlay{background:rgba(255,107,0,0.55);}
+.gal-item:hover .gal-overlay i{opacity:1;transform:scale(1);}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;}
+.lb.on{display:flex;}
+.lb img{max-width:90vw;max-height:85vh;border-radius:var(--radius);object-fit:contain;}
+.lb-x{position:absolute;top:20px;right:28px;color:#fff;font-size:34px;cursor:pointer;transition:.2s;}
+.lb-x:hover{color:var(--primary);}
+
+/* TESTIMONIALS */
+#testi{background:var(--bg-section);overflow:hidden;}
+.testi-top{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;margin-bottom:48px;}
+.testi-rating-summary{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 22px;flex-shrink:0;}
+.trs-stars{font-size:22px;color:#FFD700;letter-spacing:2px;line-height:1;}
+.trs-num{font-family:'Rajdhani',sans-serif;font-size:36px;font-weight:700;color:var(--white);}
+.trs-count{font-size:12px;color:var(--muted);margin-top:2px;}
+.testi-slider-wrap{overflow:hidden;}
+.testi-slider{display:flex;gap:20px;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.tc{min-width:calc(33.333% - 14px);flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:30px;transition:var(--transition);}
+.tc:hover{border-color:var(--border2);}
+.tc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;}
+.tc-avatar{width:52px;height:52px;border-radius:50%;flex-shrink:0;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;}
+.tc-stars{color:#FFD700;font-size:14px;letter-spacing:2px;}
+.tc-name{font-size:15px;font-weight:700;margin-top:6px;}
+.tc-city{font-size:12px;color:var(--muted);margin-top:2px;}
+.tc-program{display:inline-block;background:rgba(255,107,0,0.1);color:var(--primary);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:50px;margin-top:6px;}
+.tc-text{font-size:14px;color:var(--muted2);line-height:1.8;}
+.tc-result{display:flex;align-items:center;gap:8px;margin-top:16px;padding:10px 14px;background:rgba(0,200,83,0.08);border-radius:var(--radius-sm);border:1px solid rgba(0,200,83,0.15);}
+.tc-result i{color:var(--green);font-size:14px;}
+.tc-result span{font-size:13px;font-weight:700;color:var(--green);}
+.tctl{display:flex;align-items:center;gap:14px;justify-content:center;margin-top:36px;}
+.tctlbtn{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--border);background:transparent;color:var(--white);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.tctlbtn:hover{background:var(--primary);border-color:var(--primary);}
+.tctl-dots{display:flex;gap:8px;}
+.td{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:.3s;}
+.td.on{background:var(--primary);width:26px;border-radius:4px;}
+
+/* PRICING */
+#pricing{background:var(--bg-section2);}
+.pricing-head{text-align:center;margin-bottom:56px;}
+.pricing-toggle{display:inline-flex;align-items:center;gap:0;background:var(--card);border:1px solid var(--border);border-radius:50px;padding:4px;margin:0 auto 48px;display:flex;width:fit-content;}
+.ptgl-btn{padding:8px 24px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:.25s;letter-spacing:.5px;}
+.ptgl-btn.active{background:var(--primary);color:#fff;}
+.pricing-save{text-align:center;margin-bottom:8px;font-size:12px;color:var(--green);font-weight:700;letter-spacing:1px;display:none;}
+.pricing-save.show{display:block;}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.pc{background:var(--card);border:2px solid var(--border);border-radius:var(--radius-lg);padding:36px 30px;position:relative;overflow:hidden;transition:var(--transition);}
+.pc:not(.featured):hover{border-color:var(--border2);transform:translateY(-4px);}
+.pc.featured{background:linear-gradient(135deg,#1a0d00,#2a1500);border-color:var(--primary);transform:scale(1.03);box-shadow:0 24px 60px rgba(255,107,0,0.25);}
+.pc.featured:hover{transform:scale(1.05);}
+.pc-badge{position:absolute;top:20px;right:20px;background:var(--primary);color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:50px;}
+.pc-name{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
+.pc-price-wrap{display:flex;align-items:flex-end;gap:4px;margin-bottom:4px;}
+.pc-price{font-family:'Rajdhani',sans-serif;font-size:56px;font-weight:700;line-height:1;}
+.pc-slash{font-size:18px;color:var(--muted);text-decoration:line-through;margin-bottom:4px;margin-left:8px;}
+.pc-period{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.pc-divider{height:1px;background:var(--border);margin:20px 0;}
+.pc.featured .pc-divider{background:rgba(255,107,0,0.2);}
+.pc-features{margin-bottom:28px;}
+.pc-feat{display:flex;align-items:center;gap:10px;font-size:14px;padding:9px 0;border-bottom:1px solid var(--border);}
+.pc.featured .pc-feat{border-bottom-color:rgba(255,107,0,0.12);}
+.pc-feat:last-child{border:none;}
+.pc-feat i{color:var(--primary);font-size:14px;flex-shrink:0;}
+.pc-feat.off{color:var(--muted);text-decoration:line-through;}
+.pc-feat.off i{color:var(--muted);}
+.pc-cta{width:100%;padding:15px;border:none;cursor:pointer;border-radius:var(--radius-sm);font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:var(--transition);}
+.pc:not(.featured) .pc-cta{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.15);}
+.pc:not(.featured) .pc-cta:hover{border-color:var(--primary);color:var(--primary);}
+.pc.featured .pc-cta{background:var(--primary);color:#fff;box-shadow:0 4px 20px rgba(255,107,0,0.4);}
+.pc.featured .pc-cta:hover{background:#E55F00;}
+.pc-note{text-align:center;font-size:12px;color:var(--muted);margin-top:20px;}
+.pc-emi{display:inline-flex;align-items:center;gap:5px;background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.2);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:50px;margin-top:8px;text-transform:uppercase;}
+
+/* TEAM */
+#team{background:var(--bg-section);}
+.team-head{text-align:center;margin-bottom:56px;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.tm-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);}
+.tm-card:hover{border-color:var(--border2);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.4);}
+.tm-img{aspect-ratio:3/3.5;overflow:hidden;position:relative;background:var(--card2);display:flex;align-items:center;justify-content:center;color:var(--muted);}
+.tm-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.tm-card:hover .tm-img img{transform:scale(1.05);}
+.tm-cert{position:absolute;top:14px;left:14px;background:rgba(9,9,11,0.85);backdrop-filter:blur(8px);border:1px solid var(--border2);color:var(--primary);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:50px;}
+.tm-info{padding:20px 18px;}
+.tm-name{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;}
+.tm-role{font-size:12px;color:var(--primary);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:3px;}
+.tm-exp{font-size:13px;color:var(--muted2);margin-top:6px;}
+.tm-social{display:flex;gap:8px;margin-top:14px;}
+.tm-soc{width:32px;height:32px;border-radius:8px;background:var(--card2);border:1px solid var(--border);color:var(--muted);font-size:13px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.tm-soc:hover{background:var(--primary);border-color:var(--primary);color:#fff;}
+
+/* BOOKING */
+#booking{background:var(--bg-section2);position:relative;overflow:hidden;}
+#booking::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,0.07) 0%,transparent 70%);pointer-events:none;}
+.booking-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;position:relative;z-index:1;}
+.booking-left{padding-top:12px;}
+.booking-left .section-sub{margin:8px 0 36px;}
+.bk-perks{display:flex;flex-direction:column;gap:14px;}
+.bk-perk{display:flex;align-items:flex-start;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;transition:.2s;}
+.bk-perk:hover{border-color:var(--border2);}
+.bk-perk-icon{width:42px;height:42px;border-radius:10px;flex-shrink:0;background:rgba(255,107,0,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:17px;}
+.bk-perk-title{font-size:14px;font-weight:700;color:var(--white);}
+.bk-perk-sub{font-size:12.5px;color:var(--muted2);margin-top:3px;line-height:1.5;}
+.bk-urgency{display:flex;align-items:center;gap:10px;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.2);border-radius:var(--radius-sm);padding:12px 16px;margin-top:24px;}
+.bk-urgency i{color:var(--primary);font-size:16px;flex-shrink:0;}
+.bk-urgency span{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);}
+.bk-urgency strong{color:var(--primary);}
+.bk-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 36px;}
+.bk-form-head{margin-bottom:28px;}
+.bk-form-head h3{font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;}
+.bk-form-head p{font-size:14px;color:var(--muted2);margin-top:6px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 16px;background:var(--dark);border:1.5px solid var(--border);border-radius:var(--radius-sm);color:var(--white);font-family:'Nunito',sans-serif;font-size:14px;outline:none;transition:border-color .25s;appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--primary);}
+.fg select option{background:var(--dark2);}
+.fg textarea{min-height:90px;resize:vertical;}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted);}
+.bk-submit{width:100%;padding:17px;border:none;cursor:pointer;border-radius:var(--radius-sm);background:var(--primary);color:#fff;font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:var(--transition);margin-top:4px;}
+.bk-submit:hover{background:#E55F00;transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,107,0,0.4);}
+.bk-wa-alt{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:13px;color:var(--muted);font-weight:600;}
+.bk-wa-alt a{color:var(--green);display:inline-flex;align-items:center;gap:5px;font-weight:700;transition:.2s;}
+.bk-wa-alt a:hover{text-decoration:underline;}
+
+/* FAQ */
+#faq{background:var(--bg-section);}
+.faq-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+.faq-help{margin-top:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+.faq-help h4{font-size:16px;font-weight:700;margin-bottom:6px;}
+.faq-help p{font-size:13px;color:var(--muted2);margin-bottom:16px;}
+.faq-help-btns{display:flex;flex-direction:column;gap:8px;}
+.fhbtn{display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;transition:.2s;}
+.fhbtn.wa{background:#25D366;color:#fff;}
+.fhbtn.wa:hover{background:#1DA851;}
+.fhbtn.call{background:var(--card2);color:var(--white);border:1px solid var(--border);}
+.fhbtn.call:hover{border-color:var(--primary);color:var(--primary);}
+.faq-items{display:flex;flex-direction:column;gap:10px;}
+.fi{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.3s;}
+.fi.open{border-color:var(--border2);}
+.fi-q{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;cursor:pointer;user-select:none;font-size:15px;font-weight:700;gap:12px;}
+.fi-q .ico{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:rgba(255,107,0,0.1);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .3s;}
+.fi.open .fi-q .ico{background:var(--primary);color:#fff;transform:rotate(45deg);}
+.fi-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:14px;color:var(--muted2);line-height:1.8;padding:0 22px;}
+.fi.open .fi-a{max-height:300px;padding:0 22px 20px;}
+
+/* CONTACT */
+#contact{background:var(--bg-section2);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+.contact-left .section-sub{margin:8px 0 36px;}
+.ci{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;}
+.ci-icon{width:48px;height:48px;border-radius:12px;flex-shrink:0;background:rgba(255,107,0,0.08);border:1px solid var(--border2);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.ci-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+.ci-val{font-size:15px;font-weight:700;color:var(--white);margin-top:3px;}
+.ci-sub{font-size:12px;color:var(--muted2);margin-top:2px;}
+.contact-wa-row{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;}
+.cta-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:13px 22px;border-radius:var(--radius-sm);font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:.3s;}
+.cta-wa:hover{background:#1DA851;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,0.3);}
+.cta-call{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--white);padding:13px 22px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;transition:.3s;}
+.cta-call:hover{border-color:var(--primary);color:var(--primary);}
+.map-wrap{margin-top:28px;border-radius:var(--radius);overflow:hidden;height:200px;border:1px solid var(--border);}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:grayscale(.8) brightness(.6);}
+.contact-right{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 36px;}
+.contact-right h3{font-family:'Rajdhani',sans-serif;font-size:30px;font-weight:700;margin-bottom:24px;}
+
+/* CUSTOM SECTIONS */
+.custom-section{background:var(--bg-section);padding:96px 0;}
+.custom-section:nth-child(even){background:var(--bg-section2);}
+.cs-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.cs-img{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/3;background:var(--card2);}
+.cs-img img{width:100%;height:100%;object-fit:cover;}
+.cs-content h2{font-family:'Rajdhani',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.1;margin-bottom:12px;}
+.cs-content p{font-size:16px;color:var(--muted2);line-height:1.8;margin-bottom:20px;}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:60px;padding:64px 0 48px;}
+.footer-brand .logo-block{margin-bottom:14px;}
+.footer-desc{font-size:14px;color:var(--muted2);line-height:1.8;max-width:280px;margin-bottom:20px;}
+.footer-rating{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 16px;width:fit-content;}
+.fr-stars{color:#FFD700;font-size:16px;letter-spacing:1px;}
+.fr-text{font-size:12px;color:var(--muted2);font-weight:600;}
+.footer-social{display:flex;gap:8px;margin-top:16px;}
+.fsoc{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.fsoc:hover{background:var(--primary);border-color:var(--primary);color:#fff;}
+.fcol h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:18px;}
+.flinks{display:flex;flex-direction:column;gap:10px;}
+.flinks a{font-size:14px;color:var(--muted2);transition:.2s;display:flex;align-items:center;gap:6px;}
+.flinks a:hover{color:var(--white);}
+.footer-bottom{border-top:1px solid var(--border);padding:22px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.fcopy{font-size:13px;color:var(--muted);}
+.fcopy span{color:var(--primary);}
+.footer-badges{display:flex;gap:10px;}
+.fbadge{display:flex;align-items:center;gap:5px;background:var(--card);border:1px solid var(--border);padding:5px 10px;border-radius:50px;font-size:11px;color:var(--muted);font-weight:600;}
+.fbadge i{color:var(--primary);}
+
+/* STICKY */
+.wa-sticky{position:fixed;bottom:28px;right:28px;z-index:9998;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 6px 24px rgba(37,211,102,0.45);animation:waPulse 2.5s infinite;transition:.2s;}
+.wa-sticky:hover{transform:scale(1.1);animation:none;}
+.wa-tooltip{position:fixed;bottom:37px;right:98px;background:var(--card);border:1px solid var(--border);color:var(--white);padding:8px 14px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 4px 16px rgba(0,0,0,0.4);}
+.wa-sticky:hover~.wa-tooltip{opacity:1;}
+.scroll-up{position:fixed;bottom:98px;right:28px;z-index:9997;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;opacity:0;pointer-events:none;transition:.3s;}
+.scroll-up.on{opacity:1;pointer-events:all;}
+.scroll-up:hover{background:var(--primary);border-color:var(--primary);}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card);border:1px solid var(--border2);color:var(--white);padding:14px 24px;border-radius:50px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;z-index:9999;opacity:0;transition:.4s;pointer-events:none;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast i{color:var(--green);}
+.admin-bar{display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#1a0d00,#2a1500);border-bottom:2px solid var(--primary);padding:8px 24px;display:flex;align-items:center;justify-between;gap:12px;font-size:13px;font-weight:600;}
+.admin-bar.show{display:flex;}
+.admin-bar a{color:var(--primary);margin-left:auto;background:rgba(255,107,0,0.15);padding:5px 14px;border-radius:20px;border:1px solid var(--primary);transition:.2s;}
+.admin-bar a:hover{background:var(--primary);color:#fff;}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,0.45),0 0 0 0 rgba(37,211,102,0.4);}50%{box-shadow:0 6px 24px rgba(37,211,102,0.45),0 0 0 12px rgba(37,211,102,0);}}
+
+@media(max-width:1024px){
+  .about-grid,.whyus-grid,.booking-grid,.faq-grid,.contact-grid,.cs-grid{grid-template-columns:1fr;gap:48px;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-card-wrap{flex-direction:row;flex-wrap:wrap;}
+  .hero-stat-card{min-width:140px;flex:1;}
+  .srv-grid{grid-template-columns:repeat(2,1fr);}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .pricing-grid{grid-template-columns:1fr;}
+  .pc.featured{transform:none;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px;}
+  .about-float-1{right:-12px;}
+  .about-float-2{left:-12px;}
+}
+@media(max-width:768px){
+  section{padding:72px 0;}
+  .wrap{padding:0 18px;}
+  .nav-wrap{padding:0 18px;}
+  .nav-links,.nav-phone,.nav-actions .btn{display:none;}
+  .hbg{display:flex;}
+  .about-grid,.srv-head,.testi-top,.whyus-grid,.pricing-grid,.team-grid,.booking-grid,.faq-grid,.contact-grid,.footer-top{grid-template-columns:1fr;}
+  .srv-grid{grid-template-columns:1fr;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;height:auto;}
+  .gal-item:nth-child(1){grid-column:1/-1;grid-row:auto;height:220px;}
+  .gal-item:nth-child(2),.gal-item:nth-child(3),.gal-item:nth-child(4),.gal-item:nth-child(5),.gal-item:nth-child(6){grid-column:auto;grid-row:auto;height:160px;}
+  .tc{min-width:100%;}
+  .frow{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;}
+  .btn-lg{width:100%;justify-content:center;}
+  .footer-top{gap:28px;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .whyus-right{grid-template-columns:1fr;}
+  .why-box:first-child{grid-column:1;}
+  .pricing-grid .pc.featured{transform:none;}
+  .testi-rating-summary{display:none;}
+  .contact-right,.bk-form-wrap{padding:24px 18px;}
+  .about-float-1,.about-float-2{display:none;}
+}
+@media(max-width:480px){
+  .hero-h1{font-size:clamp(52px,16vw,72px);}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .hero-stat-card{min-width:120px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ADMIN BAR (shown when opened from admin) -->
+<div class="admin-bar" id="admin-bar">
+  <i class="fas fa-sliders-h" style="color:var(--primary)"></i>
+  <span>Admin Mode – Changes from panel are live here</span>
+  <a href="gym-admin.html">← Back to Admin Panel</a>
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="hero-announce" id="announce-bar">
+  <i class="fas fa-fire"></i>
+  🎉 <strong id="announce-text">MONSOON OFFER:</strong> Join this week &amp; get 2 months FREE! Limited slots available.
+  <a href="#booking">Claim Offer →</a>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="nav-wrap">
+    <div class="logo-block">
+      <div class="logo-icon" id="nav-logo-icon">PZ</div>
+      <div>
+        <div class="logo-text" id="nav-logo-text">Power<span>Zone</span></div>
+        <div class="logo-sub" id="nav-logo-sub">Fitness Centre</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Programs</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#team">Trainers</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:+919876543210" class="nav-phone" id="nav-phone">
+        <i class="fas fa-phone"></i> <span id="nav-phone-num">+91 98765 43210</span>
+      </a>
+      <a href="#booking" class="btn btn-orange">Free Trial</a>
+    </div>
+    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mob-menu" id="mob-menu">
+  <div class="mob-menu-inner">
+    <a href="#about" onclick="closeMob()"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="#services" onclick="closeMob()"><i class="fas fa-dumbbell"></i> Programs</a>
+    <a href="#pricing" onclick="closeMob()"><i class="fas fa-tag"></i> Pricing</a>
+    <a href="#team" onclick="closeMob()"><i class="fas fa-users"></i> Our Trainers</a>
+    <a href="#gallery" onclick="closeMob()"><i class="fas fa-images"></i> Gallery</a>
+    <a href="#testimonials" onclick="closeMob()"><i class="fas fa-star"></i> Reviews</a>
+    <a href="#faq" onclick="closeMob()"><i class="fas fa-question-circle"></i> FAQ</a>
+    <a href="#booking" onclick="closeMob()"><i class="fas fa-fire"></i> Book Free Trial Now</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-diag"></div>
+  <div class="hero-diag2"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-award">
+          <div class="hero-award-icon"><i class="fas fa-trophy"></i></div>
+          <span id="hero-badge">Voted <strong>Mumbai's Best Gym 2024</strong> by FitIndia Magazine</span>
+        </div>
+        <h1 class="hero-h1" id="hero-heading">
+          TRAIN<br/>
+          <span class="line2">HARD.</span><br/>
+          <span class="line3">WIN BIG.</span>
+        </h1>
+        <p class="hero-desc" id="hero-desc">
+          Mumbai's most result-driven fitness centre. <strong>Expert coaches, world-class equipment</strong>, and a community that pushes you beyond your limits — all from just ₹799/month.
+        </p>
+        <div class="hero-btns">
+          <a href="#booking" class="btn btn-orange btn-lg"><i class="fas fa-fire"></i> Book FREE Trial</a>
+          <a href="#" class="btn btn-green btn-lg" id="hero-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+          <a href="#services" class="btn btn-ghost btn-lg">View Programs <i class="fas fa-arrow-down"></i></a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><i class="fas fa-check-circle"></i> <span id="trust1">No Joining Fee This Month</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><i class="fas fa-check-circle"></i> <span id="trust2">Cancel Anytime</span></div>
+          <div class="trust-divider"></div>
+          <div class="trust-item"><i class="fas fa-check-circle"></i> <span id="trust3">Free Diet Plan</span></div>
+        </div>
+      </div>
+      <div class="hero-card-wrap">
+        <div class="hero-stat-card">
+          <div class="hsc-icon"><i class="fas fa-users"></i></div>
+          <div class="hsc-num" id="stat1-num">3,000<span style="font-size:24px">+</span></div>
+          <div class="hsc-label" id="stat1-label">Active Members</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hsc-icon"><i class="fas fa-medal"></i></div>
+          <div class="hsc-num" id="stat2-num">15<span style="font-size:24px">+</span></div>
+          <div class="hsc-label" id="stat2-label">Years in Mumbai</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hsc-icon"><i class="fas fa-star"></i></div>
+          <div class="hsc-num" id="stat3-num">4.9<span style="font-size:24px">★</span></div>
+          <div class="hsc-label" id="stat3-label">Google Rating</div>
+        </div>
+        <div class="hero-stat-card" style="border-color:rgba(0,200,83,0.3);">
+          <div class="hsc-icon" style="background:rgba(0,200,83,0.1);color:var(--green);"><i class="fas fa-bolt"></i></div>
+          <div class="hsc-num" style="color:var(--green);" id="stat4-num">98%</div>
+          <div class="hsc-label" id="stat4-label">Success Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trustbar">
+  <div class="wrap">
+    <div class="trustbar-inner" id="trustbar-inner">
+      <div class="trust-badge"><i class="fas fa-shield-alt"></i> ISO Certified Facility</div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge"><i class="fas fa-dumbbell"></i> Technogym Equipment</div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge"><i class="fas fa-user-md"></i> Certified Trainers</div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge"><i class="fas fa-clock"></i> Open 24×7</div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge"><i class="fas fa-wifi"></i> Free Wi-Fi</div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge"><i class="fas fa-parking"></i> Free Parking</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img-side rv l">
+        <div class="about-img-main" id="about-img-wrap">
+          <img id="about-img" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80" alt="Gym"/>
+        </div>
+        <div class="about-float-1">
+          <div class="af1-num" id="about-years">15+</div>
+          <div class="af1-text">Years of Excellence</div>
+        </div>
+        <div class="about-float-2">
+          <div class="af2-icon"><i class="fas fa-trophy"></i></div>
+          <div>
+            <div class="af2-label">Members</div>
+            <div class="af2-val" id="about-members">3,000+ Happy Members</div>
+          </div>
+        </div>
+      </div>
+      <div class="rv r">
+        <div class="section-tag"><i class="fas fa-info-circle"></i> About Us</div>
+        <h2 class="section-title" id="about-title">Mumbai Ka <span class="text-primary">Most Trusted</span> Gym</h2>
+        <p class="about-body" id="about-para1">2009 mein ek chhote se hall se shuru karke aaj PowerZone 15,000 sq ft ka state-of-the-art fitness campus ban gaya hai. 3,000+ members, 25+ certified trainers aur 98% satisfaction rate ke saath — hum sirf gym nahi, ek movement hain.</p>
+        <p class="about-body" id="about-para2">Hamare saath woh log hain jinhone 50 kg loose kiye, diabetes control kiya, weddings ke liye toned bane, ya sirf zindagi zyada enjoy karna seekha. Aapki kahani bhi yahan likhni hai.</p>
+        <div class="about-highlights">
+          <div class="ah-item"><div class="ah-icon"><i class="fas fa-certificate"></i></div><div class="ah-text">25+ Certified Coaches</div></div>
+          <div class="ah-item"><div class="ah-icon"><i class="fas fa-dumbbell"></i></div><div class="ah-text">400+ Equipment Pieces</div></div>
+          <div class="ah-item"><div class="ah-icon"><i class="fas fa-female"></i></div><div class="ah-text">Ladies Only Zone</div></div>
+          <div class="ah-item"><div class="ah-icon"><i class="fas fa-leaf"></i></div><div class="ah-text">Yoga & Wellness Studio</div></div>
+        </div>
+        <a href="#booking" class="btn btn-orange"><i class="fas fa-fire"></i> Free Trial Book Karein</a>
+        <a href="https://wa.me/919876543210" class="btn btn-ghost" target="_blank" id="about-wa-btn"><i class="fab fa-whatsapp"></i> Baat Karein</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="srv-head">
+      <div class="rv">
+        <div class="section-tag"><i class="fas fa-dumbbell"></i> Training Programs</div>
+        <h2 class="section-title">Hamare <span class="text-primary">Programs</span></h2>
+      </div>
+      <p class="section-sub rv d2" id="services-sub">Beginner se advanced tak — har fitness level ke liye tailored programs, sirf expert coaches ke saath.</p>
+    </div>
+    <div class="srv-grid" id="services-grid">
+      <div class="srv-card rv d1">
+        <div class="srv-num">01</div>
+        <div class="srv-icon"><i class="fas fa-dumbbell"></i></div>
+        <h3>Strength &amp; Bodybuilding</h3>
+        <p>Progressive overload techniques se muscle build karein. Beginner-friendly se competition-ready — sab ke liye customized plan.</p>
+        <i class="fas fa-arrow-right srv-arrow"></i>
+      </div>
+      <div class="srv-card rv d2">
+        <div class="srv-num">02</div>
+        <div class="srv-icon"><i class="fas fa-fire"></i></div>
+        <h3>Weight Loss &amp; Fat Burn</h3>
+        <p>Science-backed HIIT + cardio programs jo fast fat loss dete hain bina muscle lose kiye. 30 din mein results guaranteed.</p>
+        <i class="fas fa-arrow-right srv-arrow"></i>
+      </div>
+      <div class="srv-card rv d3">
+        <div class="srv-num">03</div>
+        <div class="srv-icon"><i class="fas fa-user-check"></i></div>
+        <h3>Personal Training (PT)</h3>
+        <p>1-on-1 dedicated coach jo sirf aapke liye plan banaye. Results fastest track pe aate hain PT ke saath. Guaranteed!</p>
+        <i class="fas fa-arrow-right srv-arrow"></i>
+      </div>
+      <div class="srv-card rv d1">
+        <div class="srv-num">04</div>
+        <div class="srv-icon"><i class="fas fa-apple-alt"></i></div>
+        <h3>Nutrition &amp; Diet Coaching</h3>
+        <p>Indian food ke hisaab se customized meal plans. Roti-sabzi khaate hue bhi achieve karein apna dream body!</p>
+        <i class="fas fa-arrow-right srv-arrow"></i>
+      </div>
+      <div class="srv-card rv d2">
+        <div class="srv-num">05</div>
+        <div class="srv-icon"><i class="fas fa-spa"></i></div>
+        <h3>Yoga &amp; Flexibility</h3>
+        <p>Traditional yoga combined with modern mobility training. Stress kam, flexibility badho, aur overall wellbeing improve karein.</p>
+        <i class="fas fa-arrow-right srv-arrow"></i>
+      </div>
+      <div class="srv-card rv d3">
+        <div class="srv-num">06</div>
+        <div class="srv-icon"><i class="fas fa-people-carry"></i></div>
+        <h3>Group Fitness Classes</h3>
+        <p>Zumba, CrossFit, Kickboxing — energetic group classes jo gym ko fun banate hain. Community ke saath train karein!</p>
+        <i class="fas fa-arrow-right srv-arrow"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="whyus">
+  <div class="whyus-bg"></div>
+  <div class="wrap">
+    <div class="whyus-grid">
+      <div class="rv l">
+        <div class="section-tag"><i class="fas fa-award"></i> Kyun Chunein Hume</div>
+        <h2 class="section-title">Results Pe <span class="text-primary">Guarantee,</span><br/>Trust Pe Promise.</h2>
+        <p class="section-sub">Mumbai mein hazaron gyms hain. Toh PowerZone kyun? Kyunki yahan sirf equipment nahi — real transformation milti hai.</p>
+        <div class="whyus-big-stat">
+          <div class="wbs-item rv d1"><div class="wbs-num">3K+</div><div class="wbs-text">Happy Members</div></div>
+          <div class="wbs-item rv d2"><div class="wbs-num">15+</div><div class="wbs-text">Years Strong</div></div>
+          <div class="wbs-item rv d3"><div class="wbs-num">4.9★</div><div class="wbs-text">Google Rating</div></div>
+        </div>
+        <div class="whyus-cta-row">
+          <a href="#booking" class="btn btn-orange"><i class="fas fa-fire"></i> Free Trial Book Karein</a>
+          <a href="#pricing" class="btn btn-ghost">Plans Dekhein</a>
+        </div>
+      </div>
+      <div class="whyus-right rv r">
+        <div class="why-box">
+          <div class="wb-icon"><i class="fas fa-medal"></i></div>
+          <div class="wb-check">✔ No. 1 Reason</div>
+          <h4 class="wb-title">Certified Coaches, Proven Results</h4>
+          <p class="wb-text">Hamare sabhi 25+ trainers REPS India, ACE ya ISSA certified hain. Average experience: 8+ saal. Aapka success unki priority hai — yahi unki job hai.</p>
+        </div>
+        <div class="why-box">
+          <div class="wb-icon"><i class="fas fa-tag"></i></div>
+          <div class="wb-check">✔ Pocket-Friendly</div>
+          <h4 class="wb-title">₹799 Se Shuru</h4>
+          <p class="wb-text">World-class training, Mumbai ke sabse affordable rates pe. EMI bhi available hai!</p>
+        </div>
+        <div class="why-box green-box">
+          <div class="wb-icon"><i class="fas fa-bolt"></i></div>
+          <div class="wb-check">✔ Fast Results</div>
+          <h4 class="wb-title">30-Day Guarantee</h4>
+          <p class="wb-text">30 din mein visible results nahi toh — full refund! Zero risk, 100% commitment.</p>
+        </div>
+        <div class="why-box">
+          <div class="wb-icon"><i class="fas fa-clock"></i></div>
+          <div class="wb-check">✔ Convenience</div>
+          <h4 class="wb-title">Open 24×7, 365 Days</h4>
+          <p class="wb-text">Job, family, time zone — koi excuse nahi. Hum kabhi band nahi hote.</p>
+        </div>
+        <div class="why-box green-box">
+          <div class="wb-icon"><i class="fas fa-users"></i></div>
+          <div class="wb-check">✔ Community</div>
+          <h4 class="wb-title">3000+ Ka Parivaar</h4>
+          <p class="wb-text">Ek aisi community jahan log ek doosre ko motivate karte hain. Akele nahi — saath.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="gal-head rv">
+      <div class="section-tag"><i class="fas fa-images"></i> Hamari Facility</div>
+      <h2 class="section-title">Dekho <span class="text-primary">Khud</span> Aake</h2>
+      <p class="section-sub">15,000 sq ft ka world-class facility — aapki eyes nahi manengi. Click to zoom.</p>
+    </div>
+    <div class="gal-grid" id="gallery-grid">
+      <div class="gal-item" onclick="openLB('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400&q=80')">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80" alt="Gym Floor"/>
+        <div class="gal-overlay"><i class="fas fa-expand-alt"></i></div>
+      </div>
+      <div class="gal-item" onclick="openLB('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&q=80" alt="Weights"/>
+        <div class="gal-overlay"><i class="fas fa-expand-alt"></i></div>
+      </div>
+      <div class="gal-item" onclick="openLB('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Cardio Area"/>
+        <div class="gal-overlay"><i class="fas fa-expand-alt"></i></div>
+      </div>
+      <div class="gal-item" onclick="openLB('https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?w=600&q=80" alt="Training"/>
+        <div class="gal-overlay"><i class="fas fa-expand-alt"></i></div>
+      </div>
+      <div class="gal-item" onclick="openLB('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80" alt="Yoga Room"/>
+        <div class="gal-overlay"><i class="fas fa-expand-alt"></i></div>
+      </div>
+      <div class="gal-item" onclick="openLB('https://images.unsplash.com/photo-1590239926044-4131f5d0654d?w=1200&q=80')">
+        <img src="https://images.unsplash.com/photo-1590239926044-4131f5d0654d?w=600&q=80" alt="CrossFit Area"/>
+        <div class="gal-overlay"><i class="fas fa-expand-alt"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="lb" id="lb" onclick="closeLB()">
+  <span class="lb-x">&times;</span>
+  <img id="lb-img" src="" alt="Gallery"/>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="testi-top">
+      <div class="rv">
+        <div class="section-tag"><i class="fas fa-star"></i> Member Reviews</div>
+        <h2 class="section-title">Unki <span class="text-primary">Zubaan,</span><br/>Unki Kahani.</h2>
+      </div>
+      <div class="testi-rating-summary rv d2">
+        <div>
+          <div class="trs-stars">★★★★★</div>
+          <div class="trs-num">4.9 / 5</div>
+          <div class="trs-count">Based on 1,247 Google Reviews</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-slider-wrap">
+      <div class="testi-slider" id="ts">
+        <div class="tc">
+          <div class="tc-top"><div><div class="tc-avatar">R</div><div class="tc-name">Rahul Sharma</div><div class="tc-city"><i class="fas fa-map-marker-alt" style="color:var(--primary);font-size:10px"></i> Andheri West</div><div class="tc-program">Weight Loss</div></div><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Main 8 mahine se PowerZone ka member hoon. Pehle 5 gyms try kiye — koi kaam nahi aaya. Yahan ka trainer ne meri life badal di!"</p>
+          <div class="tc-result"><i class="fas fa-trophy"></i><span>-22 kg in 6 months 🏆</span></div>
+        </div>
+        <div class="tc">
+          <div class="tc-top"><div><div class="tc-avatar" style="background:#C0392B">P</div><div class="tc-name">Priya Iyer</div><div class="tc-city"><i class="fas fa-map-marker-alt" style="color:var(--primary);font-size:10px"></i> Bandra</div><div class="tc-program">Strength Training</div></div><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Ladies-only zone ne mujhe confident banaya. 4 mahine mein body ne itna change liya ki rishtedar pehchante nahi!"</p>
+          <div class="tc-result"><i class="fas fa-trophy"></i><span>-14 kg + Toned Body ✨</span></div>
+        </div>
+        <div class="tc">
+          <div class="tc-top"><div><div class="tc-avatar" style="background:#1A5276">A</div><div class="tc-name">Amit Kulkarni</div><div class="tc-city"><i class="fas fa-map-marker-alt" style="color:var(--primary);font-size:10px"></i> Powai</div><div class="tc-program">Bodybuilding</div></div><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"IT company mein kaam karte hue gym ke liye time nikalna tough tha. 24/7 opening ne yeh problem solve kar di!"</p>
+          <div class="tc-result"><i class="fas fa-trophy"></i><span>+12 kg Muscle Gain 💪</span></div>
+        </div>
+        <div class="tc">
+          <div class="tc-top"><div><div class="tc-avatar" style="background:#117A65">S</div><div class="tc-name">Seema Joshi</div><div class="tc-city"><i class="fas fa-map-marker-alt" style="color:var(--primary);font-size:10px"></i> Juhu</div><div class="tc-program">Yoga & Nutrition</div></div><div class="tc-stars">★★★★★</div></div>
+          <p class="tc-text">"Diabetes control nahi ho raha tha. PowerZone ke specialist trainer ne medical-aware plan banaya. 6 mahine mein sugar normal!"</p>
+          <div class="tc-result"><i class="fas fa-trophy"></i><span>Sugar Levels Normalized 🎯</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tctl">
+      <button class="tctlbtn" id="tp"><i class="fas fa-chevron-left"></i></button>
+      <div class="tctl-dots">
+        <div class="td on" onclick="gT(0)"></div>
+        <div class="td" onclick="gT(1)"></div>
+        <div class="td" onclick="gT(2)"></div>
+        <div class="td" onclick="gT(3)"></div>
+      </div>
+      <button class="tctlbtn" id="tn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="pricing-head rv">
+      <div class="section-tag"><i class="fas fa-tag"></i> Membership Plans</div>
+      <h2 class="section-title">Simple <span class="text-primary">Pricing,</span> Zero Hidden Charges</h2>
+      <p class="section-sub" style="margin:0 auto 28px" id="pricing-sub">No joining fee this month. First trial class bilkul FREE. EMI available on all plans.</p>
+      <div class="pricing-toggle">
+        <button class="ptgl-btn active" onclick="setMonthly()">Monthly</button>
+        <button class="ptgl-btn" onclick="setYearly()">Yearly</button>
+      </div>
+      <div class="pricing-save" id="psave">🎉 Save up to 30% with yearly plan!</div>
+    </div>
+    <div class="pricing-grid">
+      <div class="pc rv d1">
+        <div class="pc-name" id="plan1-name">Starter</div>
+        <div class="pc-price-wrap">
+          <div class="pc-price" id="p1">₹799</div>
+          <div class="pc-slash" id="p1s" style="display:none">₹1,100</div>
+        </div>
+        <div class="pc-period">/month &nbsp;|&nbsp; <span class="pc-emi" id="p1emi">EMI: ₹799/mo</span></div>
+        <div class="pc-divider"></div>
+        <div class="pc-features" id="plan1-features">
+          <div class="pc-feat"><i class="fas fa-check"></i> Gym Floor Access (6 AM – 10 PM)</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Basic Equipment + Locker</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> 2 Group Classes / Week</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Free Diet Chart</div>
+          <div class="pc-feat off"><i class="fas fa-times"></i> Personal Trainer</div>
+          <div class="pc-feat off"><i class="fas fa-times"></i> 24×7 Access</div>
+        </div>
+        <button class="pc-cta" onclick="scrollBook()">Start Free Trial</button>
+        <div class="pc-note">No joining fee. Cancel anytime.</div>
+      </div>
+      <div class="pc featured rv d2">
+        <div class="pc-badge">BEST VALUE</div>
+        <div class="pc-name" id="plan2-name">Pro Elite</div>
+        <div class="pc-price-wrap">
+          <div class="pc-price" id="p2">₹1,799</div>
+          <div class="pc-slash" id="p2s" style="display:none">₹2,500</div>
+        </div>
+        <div class="pc-period">/month &nbsp;|&nbsp; <span class="pc-emi" id="p2emi">EMI: ₹600/mo</span></div>
+        <div class="pc-divider"></div>
+        <div class="pc-features" id="plan2-features">
+          <div class="pc-feat"><i class="fas fa-check"></i> Full Gym Access 24×7</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> All Equipment + Premium Locker</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Unlimited Group Classes</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> 4 PT Sessions / Month</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Custom Meal Plan (Indian Food!)</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Body Composition Analysis</div>
+        </div>
+        <button class="pc-cta" onclick="scrollBook()">Join Pro Elite</button>
+        <div class="pc-note">Most popular choice!</div>
+      </div>
+      <div class="pc rv d3">
+        <div class="pc-name" id="plan3-name">Champion</div>
+        <div class="pc-price-wrap">
+          <div class="pc-price" id="p3">₹3,499</div>
+          <div class="pc-slash" id="p3s" style="display:none">₹5,000</div>
+        </div>
+        <div class="pc-period">/month &nbsp;|&nbsp; <span class="pc-emi" id="p3emi">EMI: ₹1,166/mo</span></div>
+        <div class="pc-divider"></div>
+        <div class="pc-features" id="plan3-features">
+          <div class="pc-feat"><i class="fas fa-check"></i> Everything in Pro Elite</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Unlimited PT Sessions</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Priority Class Booking</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Monthly Health Checkup</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Sauna + Steam Access</div>
+          <div class="pc-feat"><i class="fas fa-check"></i> Family Discount (2 members)</div>
+        </div>
+        <button class="pc-cta" onclick="scrollBook()">Go Champion</button>
+        <div class="pc-note">Best for serious athletes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="team-head rv">
+      <div class="section-tag"><i class="fas fa-users"></i> Expert Trainers</div>
+      <h2 class="section-title">Hamare <span class="text-primary">Champions</span></h2>
+      <p class="section-sub" style="margin:0 auto;">25+ certified trainers — har ek industry expert, har ek dedicated to your success.</p>
+    </div>
+    <div class="team-grid" id="team-grid">
+      <div class="tm-card rv d1">
+        <div class="tm-img"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80" alt="Trainer"/><div class="tm-cert">Head Coach</div></div>
+        <div class="tm-info"><div class="tm-name">Suresh Patil</div><div class="tm-role">Strength & Bodybuilding</div><div class="tm-exp">12 years exp • ISSA Certified</div><div class="tm-social"><a class="tm-soc" href="#"><i class="fab fa-instagram"></i></a><a class="tm-soc" href="#"><i class="fab fa-youtube"></i></a></div></div>
+      </div>
+      <div class="tm-card rv d2">
+        <div class="tm-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80" alt="Trainer"/><div class="tm-cert">Women's Health</div></div>
+        <div class="tm-info"><div class="tm-name">Priya Nair</div><div class="tm-role">Weight Loss & Yoga</div><div class="tm-exp">9 years exp • ACE Certified</div><div class="tm-social"><a class="tm-soc" href="#"><i class="fab fa-instagram"></i></a></div></div>
+      </div>
+      <div class="tm-card rv d3">
+        <div class="tm-img"><img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&q=80" alt="Trainer"/><div class="tm-cert">Nutrition Expert</div></div>
+        <div class="tm-info"><div class="tm-name">Dr. Meera Desai</div><div class="tm-role">Clinical Nutritionist</div><div class="tm-exp">15 years exp • PhD Nutrition</div><div class="tm-social"><a class="tm-soc" href="#"><i class="fab fa-linkedin"></i></a></div></div>
+      </div>
+      <div class="tm-card rv d4">
+        <div class="tm-img"><img src="https://images.unsplash.com/photo-1599058918144-1ffabb6ab9a0?w=400&q=80" alt="Trainer"/><div class="tm-cert">CrossFit</div></div>
+        <div class="tm-info"><div class="tm-name">Vikram Singh</div><div class="tm-role">HIIT & CrossFit</div><div class="tm-exp">7 years exp • CrossFit L2</div><div class="tm-social"><a class="tm-soc" href="#"><i class="fab fa-instagram"></i></a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="wrap">
+    <div class="booking-grid">
+      <div class="booking-left rv l">
+        <div class="section-tag"><i class="fas fa-fire"></i> Free Trial</div>
+        <h2 class="section-title" id="booking-title">Aaj Hi <span class="text-primary">Shuru</span> Karein</h2>
+        <p class="section-sub" id="booking-sub">Koi risk nahi, koi pressure nahi. Sirf aao, train karo, aur khud decide karo ki PowerZone aapke liye sahi hai ya nahi.</p>
+        <div class="bk-perks">
+          <div class="bk-perk"><div class="bk-perk-icon"><i class="fas fa-gift"></i></div><div><div class="bk-perk-title">100% FREE First Session</div><div class="bk-perk-sub">Credit card nahi chahiye. No commitment.</div></div></div>
+          <div class="bk-perk"><div class="bk-perk-icon"><i class="fas fa-chart-line"></i></div><div><div class="bk-perk-title">Free Body Assessment</div><div class="bk-perk-sub">BMI, body fat, muscle mass — sab check.</div></div></div>
+          <div class="bk-perk"><div class="bk-perk-icon"><i class="fas fa-user-tie"></i></div><div><div class="bk-perk-title">Personal Trainer Assigned</div><div class="bk-perk-sub">Aapke goals ke hisaab se dedicated coach.</div></div></div>
+        </div>
+        <div class="bk-urgency"><i class="fas fa-clock"></i><span>⚡ Sirf <strong>12 free trial slots</strong> baaki hain is hafte ke liye!</span></div>
+      </div>
+      <div class="rv r">
+        <div class="bk-form-wrap">
+          <div class="bk-form-head"><h3>Free Trial Book Karein</h3><p>30 minutes mein confirmation call aayegi!</p></div>
+          <form onsubmit="submitBk(event)">
+            <div class="frow">
+              <div class="fg"><label>Naam *</label><input type="text" placeholder="Aapka Naam" required/></div>
+              <div class="fg"><label>Mobile *</label><input type="tel" placeholder="+91 XXXXX XXXXX" required/></div>
+            </div>
+            <div class="frow">
+              <div class="fg"><label>Email</label><input type="email" placeholder="email@gmail.com"/></div>
+              <div class="fg"><label>Age</label><input type="number" placeholder="Aapki Umar" min="15" max="80"/></div>
+            </div>
+            <div class="fg"><label>Goal</label>
+              <select>
+                <option>Weight Loss</option>
+                <option>Muscle Gain / Bodybuilding</option>
+                <option>General Fitness</option>
+                <option>Yoga & Flexibility</option>
+                <option>Sports Performance</option>
+                <option>Medical / Rehabilitation</option>
+              </select>
+            </div>
+            <div class="fg"><label>Preferred Time</label>
+              <select>
+                <option>Morning (6 AM – 10 AM)</option>
+                <option>Afternoon (10 AM – 2 PM)</option>
+                <option>Evening (4 PM – 8 PM)</option>
+                <option>Night (8 PM – 11 PM)</option>
+                <option>Flexible / Weekends Only</option>
+              </select>
+            </div>
+            <button type="submit" class="bk-submit">BOOK FREE TRIAL NOW →</button>
+          </form>
+          <div class="bk-wa-alt">Ya seedha <a href="https://wa.me/919876543210" target="_blank" id="bk-wa-link"><i class="fab fa-whatsapp"></i> WhatsApp karein</a> — instant reply!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="rv l">
+        <div class="section-tag"><i class="fas fa-question-circle"></i> FAQ</div>
+        <h2 class="section-title">Sawaal? <span class="text-primary">Hum</span><br/>Yahaan Hain!</h2>
+        <p class="section-sub">Join karne se pehle jo bhi sawaal ho — ithe milega jawab.</p>
+        <div class="faq-help">
+          <h4>Koi aur sawaal hai? 🤔</h4>
+          <p>Hum 30 second mein reply karte hain!</p>
+          <div class="faq-help-btns">
+            <a href="https://wa.me/919876543210" class="fhbtn wa" target="_blank" id="faq-wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp Pe Poochho</a>
+            <a href="tel:+919876543210" class="fhbtn call" id="faq-call-btn"><i class="fas fa-phone"></i> Call Karein</a>
+          </div>
+        </div>
+      </div>
+      <div class="faq-items rv r" id="faq-list">
+        <div class="fi"><div class="fi-q">Kya pehla class sach mein FREE hai? <div class="ico"><i class="fas fa-plus"></i></div></div><div class="fi-a">Haan, 100% free! Koi hidden charge nahi. Bas form bharo, aao, train karo!</div></div>
+        <div class="fi"><div class="fi-q">Gym ki timings kya hain? <div class="ico"><i class="fas fa-plus"></i></div></div><div class="fi-a">Pro Elite aur Champion members ke liye hum 24×7 open hain. Starter plan ke liye 6 AM se 10 PM tak access milta hai.</div></div>
+        <div class="fi"><div class="fi-q">Main bilkul beginner hoon — kya ye gym mere liye hai? <div class="ico"><i class="fas fa-plus"></i></div></div><div class="fi-a">Bilkul! Hamare 40% members beginners hain. Hamare trainers special beginner programs chalate hain. Koi judgment nahi!</div></div>
+        <div class="fi"><div class="fi-q">Membership cancel kar sakte hain? <div class="ico"><i class="fas fa-plus"></i></div></div><div class="fi-a">Haan! 15 din pehle notice de do — no penalty. 30 din mein results nahi mile toh full refund bhi milega.</div></div>
+        <div class="fi"><div class="fi-q">Kya ladies ke liye alag zone hai? <div class="ico"><i class="fas fa-plus"></i></div></div><div class="fi-a">Haan! Dedicated 2,000 sq ft ladies-only workout zone hai jisme female trainers hain. Safe aur comfortable!</div></div>
+        <div class="fi"><div class="fi-q">EMI available hai kya? <div class="ico"><i class="fas fa-plus"></i></div></div><div class="fi-a">Bilkul! Sabhi plans par 0% interest EMI available hai — HDFC, ICICI, SBI, Axis Bank ke through. 3, 6, ya 12 months!</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="rv l">
+        <div class="section-tag"><i class="fas fa-map-marker-alt"></i> Hamare Paas Aao</div>
+        <h2 class="section-title">Baat <span class="text-primary">Karein</span></h2>
+        <p class="section-sub">Call karein, WhatsApp karein, ya seedha aa jao.</p>
+        <div class="ci">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div><div class="ci-label">Phone / Call</div><div class="ci-val" id="contact-phone">+91 98765 43210</div><div class="ci-sub">Subah 6 AM – Raat 10 PM</div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div><div class="ci-label">Email</div><div class="ci-val" id="contact-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2e474048416e5e41594b5c5441404b495743004740">[email&#160;protected]</a></div><div class="ci-sub">24 ghante mein reply</div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="ci-label">Address</div><div class="ci-val">PowerZone Fitness Centre</div><div class="ci-sub" id="contact-address">Plot 48, Infinity Mall ke paas, Andheri West, Mumbai – 400053</div></div>
+        </div>
+        <div class="ci">
+          <div class="ci-icon"><i class="fas fa-clock"></i></div>
+          <div><div class="ci-label">Timing</div><div class="ci-val" id="contact-hours">Open 24×7</div><div class="ci-sub">Pro+ members. Others: 6 AM – 10 PM</div></div>
+        </div>
+        <div class="contact-wa-row">
+          <a href="https://wa.me/919876543210" class="cta-wa" id="contact-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Karein</a>
+          <a href="tel:+919876543210" class="cta-call" id="contact-call-btn"><i class="fas fa-phone"></i> Call Now</a>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995709657!3d19.08219783958221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c55%3A0x26cad48cd2fa3d1d!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1708771200000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <div class="rv r">
+        <div class="contact-right">
+          <h3>Message Bhejein</h3>
+          <form onsubmit="submitContact(event)">
+            <div class="frow">
+              <div class="fg"><label>Naam *</label><input type="text" placeholder="Aapka Naam" required/></div>
+              <div class="fg"><label>Mobile *</label><input type="tel" placeholder="+91 XXXXX XXXXX" required/></div>
+            </div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="email@gmail.com"/></div>
+            <div class="fg"><label>Message *</label><textarea rows="4" placeholder="Aapka sawaal ya message..." required></textarea></div>
+            <button type="submit" class="bk-submit" style="margin-top:0">MESSAGE BHEJEIN →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM SECTIONS container -->
+<div id="custom-sections-container"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-block">
+          <div class="logo-icon" id="footer-logo-icon">PZ</div>
+          <div>
+            <div class="logo-text" id="footer-logo-text">Power<span>Zone</span></div>
+            <div class="logo-sub" id="footer-logo-sub">Fitness Centre</div>
+          </div>
+        </div>
+        <p class="footer-desc" id="footer-desc">Mumbai ka sabse trusted gym — 2009 se. 3,000+ members, 15+ years, 98% success rate.</p>
+        <div class="footer-rating">
+          <div class="fr-stars">★★★★★</div>
+          <div class="fr-text">4.9/5 on Google<br/>(1,247 reviews)</div>
+        </div>
+        <div class="footer-social" id="footer-social">
+          <a class="fsoc" href="#" id="fs-facebook"><i class="fab fa-facebook-f"></i></a>
+          <a class="fsoc" href="#" id="fs-instagram"><i class="fab fa-instagram"></i></a>
+          <a class="fsoc" href="#" id="fs-youtube"><i class="fab fa-youtube"></i></a>
+          <a class="fsoc" href="#" id="fs-twitter"><i class="fab fa-twitter"></i></a>
+          <a class="fsoc" href="#" id="fs-whatsapp" style="background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.2);color:#25D366"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Quick Links</h4>
+        <ul class="flinks">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Our Programs</a></li>
+          <li><a href="#pricing">Membership Plans</a></li>
+          <li><a href="#team">Our Trainers</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Programs</h4>
+        <ul class="flinks">
+          <li><a href="#services">Strength Training</a></li>
+          <li><a href="#services">Weight Loss (HIIT)</a></li>
+          <li><a href="#services">Personal Training</a></li>
+          <li><a href="#services">Yoga & Flexibility</a></li>
+          <li><a href="#services">Nutrition Coaching</a></li>
+          <li><a href="#booking">Book Free Trial</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <ul class="flinks">
+          <li><a href="#" id="footer-phone-link"><i class="fas fa-phone" style="width:14px"></i> +91 98765 43210</a></li>
+          <li><a href="#" id="footer-email-link"><i class="fas fa-envelope" style="width:14px"></i> <span class="__cf_email__" data-cfemail="d8b1b6beb798a8b7afbdaaa2b7b6bdbfa1b5f6b1b6">[email&#160;protected]</span></a></li>
+          <li><a href="#contact"><i class="fas fa-map-marker-alt" style="width:14px"></i> Andheri West, Mumbai</a></li>
+          <li><a href="#contact"><i class="fas fa-clock" style="width:14px"></i> <span id="footer-hours">Open 24×7</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="fcopy">© 2025 <span id="footer-biz-name">PowerZone Fitness Centre</span>. All Rights Reserved. Made with ❤️ in Mumbai. 🇮🇳</p>
+      <div class="footer-badges">
+        <div class="fbadge"><i class="fas fa-shield-alt"></i> SSL Secured</div>
+        <div class="fbadge"><i class="fas fa-award"></i> ISO Certified</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-sticky" id="wa-sticky" href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<div class="wa-tooltip">WhatsApp pe poochho! 💬</div>
+<button class="scroll-up" id="sup" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toast-msg"></span></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ═══════════════════════════
+// ADMIN DATA LOADER
+// ═══════════════════════════
+var GYM_KEY = 'gymAdminData';
+
+function loadAdminData() {
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(GYM_KEY)) || {}; } catch(e) {}
+  return data;
+}
+
+function applyAdminData() {
+  var d = loadAdminData();
+  if (!d || Object.keys(d).length === 0) return;
+
+  // Show admin bar if opened from admin panel
+  if (document.referrer && document.referrer.indexOf('gym-admin') > -1) {
+    document.getElementById('admin-bar').classList.add('show');
+  }
+
+  // PRIMARY COLOR
+  if (d.primaryColor) {
+    var r = document.documentElement;
+    r.style.setProperty('--primary', d.primaryColor);
+    r.style.setProperty('--primary2', d.primaryColor);
+    r.style.setProperty('--border2', hexToRgba(d.primaryColor, 0.2));
+    r.style.setProperty('--primary-glow', hexToRgba(d.primaryColor, 0.25));
+    r.style.setProperty('--shadow-glow', '0 0 60px ' + hexToRgba(d.primaryColor, 0.18));
+  }
+
+  // BACKGROUND COLORS
+  if (d.bgDark) {
+    document.documentElement.style.setProperty('--bg-body', d.bgDark);
+    document.documentElement.style.setProperty('--bg-section', d.bgDark);
+    document.documentElement.style.setProperty('--dark', d.bgDark);
+  }
+  if (d.bgDark2) {
+    document.documentElement.style.setProperty('--bg-section2', d.bgDark2);
+    document.documentElement.style.setProperty('--dark2', d.bgDark2);
+  }
+
+  // META
+  if (d.metaTitle) { document.getElementById('page-title').textContent = d.metaTitle; document.title = d.metaTitle; }
+  if (d.metaDesc) { document.getElementById('meta-desc').setAttribute('content', d.metaDesc); }
+
+  // LOGO
+  if (d.logoText) {
+    document.getElementById('nav-logo-text').textContent = d.logoText;
+    document.getElementById('footer-logo-text').textContent = d.logoText;
+    document.getElementById('footer-biz-name').textContent = d.logoText;
+    document.getElementById('nav-logo-icon').textContent = d.logoIcon || d.logoText.substring(0,2).toUpperCase();
+    document.getElementById('footer-logo-icon').textContent = d.logoIcon || d.logoText.substring(0,2).toUpperCase();
+  }
+  if (d.logoSub) {
+    document.getElementById('nav-logo-sub').textContent = d.logoSub;
+    document.getElementById('footer-logo-sub').textContent = d.logoSub;
+  }
+
+  // ANNOUNCEMENT
+  if (d.announceText) document.getElementById('announce-text').innerHTML = d.announceText;
+  if (d.showAnnounce === false) document.getElementById('announce-bar').style.display = 'none';
+
+  // HERO
+  if (d.heroBadge) document.getElementById('hero-badge').innerHTML = d.heroBadge;
+  if (d.heroHeading) document.getElementById('hero-heading').innerHTML = d.heroHeading;
+  if (d.heroDesc) document.getElementById('hero-desc').innerHTML = d.heroDesc;
+  if (d.phone) {
+    var waNum = d.phone.replace(/[^0-9]/g,'');
+    var waUrl = 'https://wa.me/' + waNum;
+    var telUrl = 'tel:' + d.phone;
+    // Nav
+    document.getElementById('nav-phone').href = telUrl;
+    document.getElementById('nav-phone-num').textContent = d.phone;
+    // Hero
+    document.getElementById('hero-wa-btn').href = waUrl;
+    // About
+    document.getElementById('about-wa-btn').href = waUrl;
+    // Booking form
+    document.getElementById('bk-wa-link').href = waUrl;
+    // FAQ help
+    document.getElementById('faq-wa-btn').href = waUrl;
+    document.getElementById('faq-call-btn').href = telUrl;
+    // Contact section
+    document.getElementById('contact-phone').textContent = d.phone;
+    document.getElementById('contact-wa-btn').href = waUrl;
+    document.getElementById('contact-call-btn').href = telUrl;
+    // Footer
+    document.getElementById('footer-phone-link').href = telUrl;
+    document.getElementById('footer-phone-link').innerHTML = '<i class="fas fa-phone" style="width:14px"></i> ' + d.phone;
+    // Sticky WhatsApp bubble
+    document.getElementById('wa-sticky').href = waUrl;
+  }
+  if (d.email) {
+    document.getElementById('contact-email').textContent = d.email;
+    document.getElementById('footer-email-link').href = 'mailto:' + d.email;
+    document.getElementById('footer-email-link').innerHTML = '<i class="fas fa-envelope" style="width:14px"></i> ' + d.email;
+  }
+  if (d.address) document.getElementById('contact-address').textContent = d.address;
+  if (d.hours) { document.getElementById('contact-hours').textContent = d.hours; document.getElementById('footer-hours').textContent = d.hours; }
+
+  // TRUST ITEMS
+  if (d.trust1) document.getElementById('trust1').textContent = d.trust1;
+  if (d.trust2) document.getElementById('trust2').textContent = d.trust2;
+  if (d.trust3) document.getElementById('trust3').textContent = d.trust3;
+
+  // STATS
+  if (d.stat1Num) document.getElementById('stat1-num').innerHTML = d.stat1Num;
+  if (d.stat1Label) document.getElementById('stat1-label').textContent = d.stat1Label;
+  if (d.stat2Num) document.getElementById('stat2-num').innerHTML = d.stat2Num;
+  if (d.stat2Label) document.getElementById('stat2-label').textContent = d.stat2Label;
+  if (d.stat3Num) document.getElementById('stat3-num').innerHTML = d.stat3Num;
+  if (d.stat3Label) document.getElementById('stat3-label').textContent = d.stat3Label;
+  if (d.stat4Num) document.getElementById('stat4-num').innerHTML = d.stat4Num;
+  if (d.stat4Label) document.getElementById('stat4-label').textContent = d.stat4Label;
+
+  // ABOUT
+  if (d.aboutTitle) document.getElementById('about-title').innerHTML = d.aboutTitle;
+  if (d.aboutPara1) document.getElementById('about-para1').textContent = d.aboutPara1;
+  if (d.aboutPara2) document.getElementById('about-para2').textContent = d.aboutPara2;
+  if (d.aboutYears) document.getElementById('about-years').textContent = d.aboutYears;
+  if (d.aboutMembers) document.getElementById('about-members').textContent = d.aboutMembers;
+  if (d.aboutImg) { document.getElementById('about-img').src = d.aboutImg; }
+
+  // SERVICES
+  if (d.servicesSub) document.getElementById('services-sub').textContent = d.servicesSub;
+  if (d.services && d.services.length) {
+    var grid = document.getElementById('services-grid');
+    grid.innerHTML = d.services.map(function(s, i) {
+      return '<div class="srv-card rv d'+(i%3+1)+'">'+
+        '<div class="srv-num">0'+(i+1)+'</div>'+
+        '<div class="srv-icon"><i class="fas '+(s.icon||'fa-dumbbell')+'"></i></div>'+
+        '<h3>'+escHtml(s.title)+'</h3>'+
+        '<p>'+escHtml(s.desc)+'</p>'+
+        '<i class="fas fa-arrow-right srv-arrow"></i></div>';
+    }).join('');
+    reObserve();
+  }
+
+  // SECTION VISIBILITY
+  if (d.showAbout === false) document.getElementById('about').style.display='none';
+  if (d.showServices === false) document.getElementById('services').style.display='none';
+  if (d.showGallery === false) document.getElementById('gallery').style.display='none';
+  if (d.showTestimonials === false) document.getElementById('testimonials').style.display='none';
+  if (d.showPricing === false) document.getElementById('pricing').style.display='none';
+  if (d.showTeam === false) document.getElementById('team').style.display='none';
+  if (d.showBooking === false) document.getElementById('booking').style.display='none';
+  if (d.showFAQ === false) document.getElementById('faq').style.display='none';
+  if (d.showContact === false) document.getElementById('contact').style.display='none';
+  if (d.showWhyUs === false) document.getElementById('whyus').style.display='none';
+
+  // GALLERY
+  if (d.gallery && d.gallery.length) {
+    var gGrid = document.getElementById('gallery-grid');
+    gGrid.innerHTML = d.gallery.map(function(g) {
+      return '<div class="gal-item" onclick="openLB(\''+g.img+'\')">'+
+        '<img src="'+g.img+'" alt="Gallery"/>'+
+        '<div class="gal-overlay"><i class="fas fa-expand-alt"></i></div></div>';
+    }).join('');
+  }
+
+  // PRICING
+  if (d.plan1Name) document.getElementById('plan1-name').textContent = d.plan1Name;
+  if (d.plan2Name) document.getElementById('plan2-name').textContent = d.plan2Name;
+  if (d.plan3Name) document.getElementById('plan3-name').textContent = d.plan3Name;
+  if (d.plan1Price) document.getElementById('p1').textContent = d.plan1Price;
+  if (d.plan2Price) document.getElementById('p2').textContent = d.plan2Price;
+  if (d.plan3Price) document.getElementById('p3').textContent = d.plan3Price;
+  if (d.pricingSub) document.getElementById('pricing-sub').textContent = d.pricingSub;
+
+  // BOOKING
+  if (d.bookingTitle) document.getElementById('booking-title').innerHTML = d.bookingTitle;
+  if (d.bookingSub) document.getElementById('booking-sub').textContent = d.bookingSub;
+
+  // SOCIAL LINKS
+  if (d.socialFacebook) document.getElementById('fs-facebook').href = d.socialFacebook;
+  if (d.socialInstagram) document.getElementById('fs-instagram').href = d.socialInstagram;
+  if (d.socialYoutube) document.getElementById('fs-youtube').href = d.socialYoutube;
+  if (d.socialTwitter) document.getElementById('fs-twitter').href = d.socialTwitter;
+  if (d.socialWhatsapp) document.getElementById('fs-whatsapp').href = d.socialWhatsapp;
+
+  // FOOTER
+  if (d.footerDesc) document.getElementById('footer-desc').textContent = d.footerDesc;
+
+  // CUSTOM SECTIONS
+  if (d.customSections && d.customSections.length) {
+    var container = document.getElementById('custom-sections-container');
+    container.innerHTML = d.customSections.map(function(cs, i) {
+      var isEven = i % 2 === 0;
+      return '<section class="custom-section">'+
+        '<div class="wrap"><div class="cs-grid" style="direction:'+(isEven?'ltr':'rtl')+'">'+
+        (cs.img ? '<div class="cs-img" style="direction:ltr"><img src="'+cs.img+'" alt="'+escHtml(cs.title)+'"/></div>' : '')+
+        '<div class="cs-content" style="direction:ltr">'+
+          (cs.subtitle ? '<div class="section-tag">'+escHtml(cs.subtitle)+'</div>' : '')+
+          '<h2>'+escHtml(cs.title)+'</h2>'+
+          '<p>'+escHtml(cs.content)+'</p>'+
+          (cs.btnLabel ? '<a href="'+(cs.btnLink||'#')+'" class="btn btn-orange">'+escHtml(cs.btnLabel)+'</a>' : '')+
+        '</div></div></div></section>';
+    }).join('');
+  }
+
+  // TEAM
+  if (d.team && d.team.length) {
+    var tGrid = document.getElementById('team-grid');
+    tGrid.innerHTML = d.team.map(function(t, i) {
+      return '<div class="tm-card rv d'+(i%4+1)+'">'+
+        '<div class="tm-img">'+(t.img ? '<img src="'+t.img+'" alt="'+escHtml(t.name)+'"/>' : '<i class="fas fa-user" style="font-size:48px"></i>')+
+        (t.cert ? '<div class="tm-cert">'+escHtml(t.cert)+'</div>' : '')+
+        '</div>'+
+        '<div class="tm-info"><div class="tm-name">'+escHtml(t.name||'')+'</div>'+
+        '<div class="tm-role">'+escHtml(t.role||'')+'</div>'+
+        '<div class="tm-exp">'+escHtml(t.exp||'')+'</div></div></div>';
+    }).join('');
+    reObserve();
+  }
+
+  // FAQ
+  if (d.faqs && d.faqs.length) {
+    var faqList = document.getElementById('faq-list');
+    faqList.innerHTML = d.faqs.map(function(f) {
+      return '<div class="fi"><div class="fi-q">'+escHtml(f.q)+' <div class="ico"><i class="fas fa-plus"></i></div></div>'+
+        '<div class="fi-a">'+escHtml(f.a)+'</div></div>';
+    }).join('');
+    // Rebind FAQ
+    document.querySelectorAll('.fi-q').forEach(function(q) {
+      q.addEventListener('click', function() {
+        var fi = q.parentElement;
+        var was = fi.classList.contains('open');
+        document.querySelectorAll('.fi').forEach(function(f){f.classList.remove('open');});
+        if(!was) fi.classList.add('open');
+      });
+    });
+  }
+}
+
+function hexToRgba(hex, alpha) {
+  var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return 'rgba('+r+','+g+','+b+','+alpha+')';
+}
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ═══════════════════════════
+// ORIGINAL SCRIPTS
+// ═══════════════════════════
+const hdr=document.getElementById('hdr'),sup=document.getElementById('sup');
+window.addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',scrollY>60);
+  sup.classList.toggle('on',scrollY>500);
+});
+
+const hbg=document.getElementById('hbg'),mm=document.getElementById('mob-menu');
+hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mm.classList.toggle('open');});
+function closeMob(){hbg.classList.remove('open');mm.classList.remove('open');}
+
+var ro = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on');});
+},{threshold:.1});
+function reObserve(){document.querySelectorAll('.rv').forEach(function(el){ro.observe(el);});}
+reObserve();
+
+var so=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';so.unobserve(e.target);}
+  });
+},{threshold:.5});
+document.querySelectorAll('.skill-fill').forEach(function(el){so.observe(el);});
+
+function openLB(src){document.getElementById('lb-img').src=src;document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden';}
+function closeLB(){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();});
+
+let ti=0;
+const ts=document.getElementById('ts');
+const tdots=document.querySelectorAll('.td');
+function vcards(){return window.innerWidth>768?3:1;}
+function uT(){
+  var cw=ts.children[0].offsetWidth+20;
+  var max=ts.children.length-vcards();
+  ti=Math.max(0,Math.min(ti,max));
+  ts.style.transform='translateX(-'+(ti*cw)+'px)';
+  tdots.forEach(function(d,i){d.classList.toggle('on',i===ti);});
+}
+function gT(i){ti=i;uT();}
+document.getElementById('tp').addEventListener('click',()=>{ti=Math.max(0,ti-1);uT();});
+document.getElementById('tn').addEventListener('click',()=>{ti=Math.min(ts.children.length-vcards(),ti+1);uT();});
+setInterval(()=>{ti=ti>=ts.children.length-vcards()?0:ti+1;uT();},5500);
+
+document.querySelectorAll('.fi-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var fi=q.parentElement;
+    var was=fi.classList.contains('open');
+    document.querySelectorAll('.fi').forEach(function(f){f.classList.remove('open');});
+    if(!was)fi.classList.add('open');
+  });
+});
+
+let yearly=false;
+var prices={m:['₹799','₹1,799','₹3,499'],y:['₹7,990','₹15,990','₹31,990'],ys:['₹9,588','₹21,588','₹41,988']};
+function setMonthly(){
+  yearly=false;
+  document.querySelectorAll('.ptgl-btn')[0].classList.add('active');
+  document.querySelectorAll('.ptgl-btn')[1].classList.remove('active');
+  document.getElementById('psave').classList.remove('show');
+  ['p1','p2','p3'].forEach(function(id,i){
+    var d=loadAdminData();
+    document.getElementById(id).textContent=(id==='p1'&&d.plan1Price)?d.plan1Price:(id==='p2'&&d.plan2Price)?d.plan2Price:(id==='p3'&&d.plan3Price)?d.plan3Price:prices.m[i];
+    document.getElementById(id+'s').style.display='none';
+  });
+  document.getElementById('p1emi').textContent='EMI: ₹799/mo';
+  document.getElementById('p2emi').textContent='EMI: ₹600/mo';
+  document.getElementById('p3emi').textContent='EMI: ₹1,166/mo';
+}
+function setYearly(){
+  yearly=true;
+  document.querySelectorAll('.ptgl-btn')[1].classList.add('active');
+  document.querySelectorAll('.ptgl-btn')[0].classList.remove('active');
+  document.getElementById('psave').classList.add('show');
+  ['p1','p2','p3'].forEach(function(id,i){
+    document.getElementById(id).textContent=prices.y[i];
+    document.getElementById(id+'s').textContent=prices.ys[i];
+    document.getElementById(id+'s').style.display='inline';
+  });
+  document.getElementById('p1emi').textContent='Saves ₹1,598/year';
+  document.getElementById('p2emi').textContent='Saves ₹5,598/year';
+  document.getElementById('p3emi').textContent='Saves ₹9,988/year';
+}
+function scrollBook(){document.getElementById('booking').scrollIntoView({behavior:'smooth'});}
+
+function showToast(msg){
+  document.getElementById('toast-msg').textContent=msg;
+  var t=document.getElementById('toast');
+  t.classList.add('on');
+  setTimeout(function(){t.classList.remove('on');},4500);
+}
+function submitBk(e){
+  e.preventDefault();
+  showToast('🎉 Booking confirmed! 30 min mein call aayegi aapko.');
+  e.target.reset();
+}
+function submitContact(e){
+  e.preventDefault();
+  // Save to localStorage for admin enquiries
+  var form = e.target;
+  var inputs = form.querySelectorAll('input,textarea,select');
+  var enq = {name:'',email:'',phone:'',subject:'',message:'',date:new Date().toLocaleDateString('en-IN'),status:'new'};
+  inputs.forEach(function(inp,i){
+    if(i===0)enq.name=inp.value;
+    else if(i===1)enq.phone=inp.value;
+    else if(i===2)enq.email=inp.value;
+    else if(i===3)enq.message=inp.value;
+  });
+  var list=[];try{list=JSON.parse(localStorage.getItem('gymEnquiries'))||[];}catch(err){}
+  list.unshift(enq);
+  localStorage.setItem('gymEnquiries'
