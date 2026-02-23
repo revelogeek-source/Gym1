@@ -198,7 +198,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
     <div class="page-title" id="page-title">Dashboard</div>
     <div class="topbar-right">
       <span class="live-badge"><span class="live-dot"></span>Live Site</span>
-      <a class="preview-btn" href="gym-india-pro.html" target="_blank" id="preview-link">👁 View Site</a>
+      <a class="preview-btn" href="index.html" target="_blank" id="preview-link">👁 View Site</a>
     </div>
   </div>
   <div class="content">
@@ -1149,7 +1149,7 @@ function updateDashboard(){
 
 function resetAll(){if(!confirm('Reset ALL content? Cannot be undone!'))return;localStorage.removeItem(GYM_KEY);loadData();populateForms();toast('✅ Reset done');}
 function exportData(){var blob=new Blob([JSON.stringify(adminData,null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='powerzone-backup-'+Date.now()+'.json';a.click();toast('✅ Exported');}
-function previewSite(){window.open('gym-india-pro.html','_blank');}
+function previewSite(){window.open('index.html','_blank');}
 
 // INIT
 loadData();populateForms();updateDashboard();
